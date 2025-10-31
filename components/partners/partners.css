@@ -1,0 +1,33 @@
+.partners {
+    margin: 30px auto 80px;
+    /* width: 100%; */
+    text-align: center;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.cell {
+    width: 30%;
+    margin: 10px;
+    background-color: white;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-p {
+    width: 80px;
+    cursor: pointer;
+}
+
+@media (max-width: 940px) {
+  .cell {
+    width: 38%;
+  }
+}
