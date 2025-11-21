@@ -111,3 +111,12 @@
     }
 }
 
+@media (max-width: 600px) {
+    .item-left {
+      flex-basis: 100%;
+    }
+    .item-right {
+      display: none;
+    }
+}
+
