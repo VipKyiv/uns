@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .video-player video{
@@ -20,4 +21,36 @@
 
 .video-player.hide {
     display: none;
+}
+
+.close-button {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+}
+
+.close-button button {
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    background-color: inherit;
+}
+
+@media (max-width: 1000px) {
+  .close-button {
+      top: 2px;
+      right: 2px;
+  }
+  .close-button button {
+    font-size: 25px;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .close-button {
+      top: 0;
+      right: 0;
+  }
 }

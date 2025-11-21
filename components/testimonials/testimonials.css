@@ -23,73 +23,91 @@
 .slider {
     overflow: hidden;
     color: white;
+    height: 320px;
 }
 
 .slider ul {
     display: flex;
     width: 200%;
+    height: 100%;
     overflow-x: hidden;
     transition: 0.5s;
 }
 
 .slider ul li{
     list-style: none;
-    width: 50%;
-    padding: 20px;
+    width: 25%;
+    padding: 10px;
 }
 
-.slide {
-    box-shadow: 00 20px rgba(0,0,0,0.05);
+.list-item {
     padding: 40px;
     border-radius: 10px;
     color: #676767;
     line-height: 1.4;
     background: white;
-}
-
-.slide img {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 4px solid rgb(145, 145, 7);
-}
-
-.user-info {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    font-size: 15px;
+    justify-content: space-between;
+    height: 300px;
 }
 
-.user-info h3{
-    color: rgb(145, 145, 7);
+.item-left {
+   flex-basis: 40%;
+   position: relative;
 }
- 
-@media (max-width: 900px) {
-    .testimonials {
-        padding: 0 40px;
-    }
+.item-right {
+    flex-basis: 50%;
+    padding-left: 10px;
+}
 
-    .testimonials ul li{
+.play-icon{
+    width: 60px;
+    color:rgb(228, 237, 228);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;;
+    transform: translate(-50%, -50%);
+    font-size: 52px;;
+}
+
+.item-left video {
+    width: 250px;
+    height: 200px;
+}
+
+@media (max-width: 1200px) {
+    .slider ul li{
         padding: 10px;
     }
-    .slide{
-        padding: 10px;
+
+    .list-item {
+      width: 100%;
+      height: 250px;
+    }
+
+   .item-left video {
+      width: 100%;
+    }
+
+    .play-icon{
+      width: 40px;
+      left: 50%;;
+      font-size: 32px;;
     }
 
 }
 
-@media (max-width: 600px) {
-  .user-info {
-    display: block;
-    margin-bottom: 10px; 
-    font-size: 12px;
-  }
-  .user-info h3{
-    font-size: 16px;
-  }
-  .slider p{
-    font-size: 12px;
-  }
+@media (max-width: 840px) {
+    .slider ul li{
+      padding: 3px;
+    }
+   .slider ul {
+      width: 400%;
+    }   
+    .slider {
+        height: 260px;
+    }
 }
+

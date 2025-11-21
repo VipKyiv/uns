@@ -1,95 +1,88 @@
 "use client";
-import { useRef} from 'react';
+import { useState, useRef, RefObject} from 'react';
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
-import user_1 from '../../src/assets/photo_1.png';
-import user_2 from '../../src/assets/photo_2.png';
-import user_3 from '../../src/assets/photo_3.png';
-import user_4 from '../../src/assets/photo_4.png';
+import { FaRegPlayCircle } from "react-icons/fa";
+
 import './testimonials.css';
 
-const Testimonials = () => {
-  const slider = useRef<HTMLUListElement | HTMLUListElement | null>(null);
-  let tx = 0;
-  const handleBack = () => {
-    if (tx < 0)
-        tx += 25;
-    if (slider.current)
-      slider.current.style.transform = `translateX(${tx}%)`;
+const TestimonialsData = [
+    { src: 'videos/testimonials/IMG_7621.MP4',
+      text: 'Висловлюємо подяку хлопцям з фонду УНС за чергову і своєчасну допомогу.'  
+    },
+    { src: 'videos/testimonials/IMG_7622.MP4',
+      text: 'Дякуємо фонду УНС та компанії Globallogic за РЕБи та Старлінки.'  
+    },
+    { src: 'videos/testimonials/IMG_7623.MP4',
+      text: 'Хочемо висловити велику подяку від нашого підрозділу за оперативний збір та закупівлю двох РЕБів.'  
+    },
+    { src: 'videos/testimonials/IMG_7624.MP4',
+      text: 'Дякуємо хлопцям з фонду УНС за придбаний ними Старлінк та три чудових смартфони.'  
+    },
+]
 
-  }  
+const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(type:string, src:string) => void}) => {
+  const [delta, setDelta] = useState<number>(0);  
+  const slider = useRef<HTMLUListElement | HTMLUListElement | null>(null);
+
+  const handleBack = () => {
+    let currentDelta = delta;
+    if (currentDelta < 0) {
+      currentDelta += 25;  
+      if (slider.current)
+        slider.current.style.transform = `translateX(${currentDelta}%)`;
+      setDelta(currentDelta);
+    }
+
+  }
+
   const handleForward = () => {
-    if (tx > -50)
-        tx -= 25;
-    if (slider.current)
-      slider.current.style.transform = `translateX(${tx}%)`;
+    let currentDelta = delta;
+    if (currentDelta > -(maxDelta(slider))) {
+      currentDelta -= 25; 
+      if (slider.current)
+        slider.current.style.transform = `translateX(${currentDelta}%)`;
+      setDelta(currentDelta);
+
+    }
   }  
+  const maxDelta = (ref: RefObject<HTMLUListElement | null>) => 
+    (ref.current && ref.current?.offsetHeight < 300) ? 75 : 50;
+
+  const handlePlayButton = (index:number) => {
+    onPlayButtonClick('video', TestimonialsData[index].src);
+  }  
+
 
   return (
     <div className='testimonials'>
-      <IoIosArrowDropleft className="prev-btn" onClick={handleBack}/>
-      <IoIosArrowDropright className="next-btn" onClick={handleForward}/>
+      {delta < 0 && <IoIosArrowDropleft className="prev-btn" onClick={handleBack} />}
+      {delta > -(maxDelta(slider)) && <IoIosArrowDropright className="next-btn" onClick={handleForward}/>}
       <div className="slider">
         <ul ref={slider}>
-            <li>
-                <div className="slide">
-                    <div className="user-info">
-                        <img src={user_1.src} alt='' />
-                        <div>
-                            <h3>Горлиця</h3>
-                            <span>Пілот БПЛА</span>
-                        </div>
-                    </div>
-                    <p> відзив першого користувача відзив першого користувачавідзив першого користувачавідзив першого користувача
-                        відзив першого користувачавідзив першого користувачавідзив першого користувачавідзив першого користувача
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div className="slide">
-                    <div className="user-info">
-                        <img src={user_2.src} alt='' />
-                        <div>
-                            <h3>Смайл</h3>
-                            <span>Снайпер</span>
-                        </div>
-                    </div>
-                    <p> відзив першого користувача відзив першого користувачавідзив першого користувачавідзив першого користувача
-                        відзив першого користувачавідзив першого користувачавідзив першого користувачавідзив першого користувача
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div className="slide">
-                    <div className="user-info">
-                        <img src={user_3.src} alt='' />
-                        <div>
-                            <h3>Шумахер</h3>
-                            <span>Водій</span>
-                        </div>
-                    </div>
-                    <p> відзив третього користувача відзив третього користувачавідзив третього користувачавідзив третього користувача
-                        відзив третього користувачавідзив третього користувачавідзив третього користувачавідзив третього користувача
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div className="slide">
-                    <div className="user-info">
-                        <img src={user_4.src} alt='' />
-                        <div>
-                            <h3>Рембо</h3>
-                            <span>Штурмовик</span>
-                        </div>
-                    </div>
-                    <p> відзив четвертого  користувач  четвертого користувачавідзив четвертого користувачавідзив четвертого користувача
-                        відзив четвертого того користувачавідзив четвертого користувачаві четвертого користувача четвертого користувача
-                    </p>
-                </div>
-            </li>
+            {TestimonialsData.map((item, index) => (
+              <li key={index}>
+                <Slide index={index} onPlayButtonClick={handlePlayButton}/>
+              </li>
+            ))}
         </ul>
       </div>
     </div>
   )
 }
+
+function Slide({index, onPlayButtonClick}:{index:number, onPlayButtonClick: (index:number) => void}) {
+  return(
+    <div className="list-item">
+        <div className="item-left">
+            <video>
+              <source type="video/mp4" src={TestimonialsData[index].src}></source>
+            </video>
+            <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick(index)}/>
+        </div>
+        <div className="item-right"> {TestimonialsData[index].text}</div>
+    </div>
+  );
+}
+
 
 export default Testimonials;

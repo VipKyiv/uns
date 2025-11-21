@@ -2,12 +2,13 @@ import './about.css';
 import about_img from '../../src/assets/uns-1.jpg'
 import { FaRegPlayCircle } from "react-icons/fa";
 
-const About = ({handlePlayButton}:{handlePlayButton:(playState:boolean)=>void}) => {
+const About = ({onPlayButtonClick}:{onPlayButtonClick:(type:string, src:string) => void}) => {
+
   return (
     <div className='about'>
       <div className="about-left">
         <img src={about_img.src} alt='logo' className='about-img'/>
-        <FaRegPlayCircle className='play-icon' onClick={()=>handlePlayButton(true)}/>
+        <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick('video', 'videos/video.mp4')}/>
       </div>
       <div className="about-right">
         <h3> Про Фонд</h3>

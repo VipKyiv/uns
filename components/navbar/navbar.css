@@ -116,5 +116,8 @@ nav ul li {
     display: block;
     cursor: pointer;
    }
+  .logo {
+    width: 40px;
+  }
 }
 
