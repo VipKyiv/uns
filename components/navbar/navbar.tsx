@@ -20,7 +20,7 @@ const  Navbar = () => {
   return (
     <nav className='container'>
       <img src={logo.src} alt='logo' className='logo'/>
-      <ul className={`${isMobileMenuVisible ? '' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
+      <ul className={`${isMobileMenuVisible ? 'mobile-menu' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
         <li className='menu-item'>
           <Link to="hero" smooth={true} offset={0} duration={500}>Головна</Link> 
         </li>
@@ -31,10 +31,9 @@ const  Navbar = () => {
           <Link to="events" smooth={true} offset={-200} duration={500}>Події</Link>
 
         </li>
-        <li className='menu-item'>
+        {/* <li className='menu-item'>
           <Link to="partners" smooth={true} offset={-180} duration={500}>Партнери</Link>
-
-        </li>
+        </li> */}
         <li className='menu-item'>
           <Link to="testimonials" smooth={true} offset={-150} duration={500}>Відгуки</Link>
 

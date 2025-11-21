@@ -69,6 +69,9 @@ nav ul li {
 .hide-mobile-menu {
    right: -200px;
 }
+.mobile-menu {
+  overflow-y: auto;
+}
 
 @media (max-width: 1300px) {
   .menu-item {
@@ -102,7 +105,7 @@ nav ul li {
    }
    nav ul li{
     display: block;
-    margin: 25px 40px;
+    margin: 10px 40px;
 
    }
    .menu-item { 

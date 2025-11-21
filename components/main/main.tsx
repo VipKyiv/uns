@@ -33,15 +33,15 @@ const Main = () => {
        <About onPlayButtonClick={handlePlayButton}/>
        <Title title='Події' subtitle='Галерея фото'/>
        <Events/>
-       <Title title='Нам довіряють' subtitle='Партнери'/>
-       <Partners/>
+       {/* <Title title='Нам довіряють' subtitle='Партнери'/>
+       <Partners/> */}
        <Title title='Нам дякують' subtitle=''/>
        <Testimonials onPlayButtonClick={handlePlayButton}/>
        <Title title="Зв'яжіться з нами" subtitle='Наші контакти'/>
        <Contact/>
        <Footer/>
      </div>
-     { source && <VideoPlayer playState={playState} src={source} onClose={handleCloseModal}/>}
+     { source && <VideoPlayer playState={playState} src={source} handleClose={handleCloseModal}/>}
     </main>
   );
 

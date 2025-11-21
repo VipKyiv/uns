@@ -118,5 +118,15 @@
     .item-right {
       display: none;
     }
+
+    .slider {
+        height: 200px;
+    }
+    .list-item {
+      height: 180px;
+    }
+    .item-left video {
+      height: 150px;
+    }
 }
 
