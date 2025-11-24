@@ -8,26 +8,25 @@ import Partners from "@/components/partners/partners";
 import Testimonials from "@/components/testimonials/testimonials";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/footer";
-import VideoPlayer from "@/components/videoplayer/videoplayer";
+import Modal from "@/components/modal/modal";
+import {SourceType, SourceDataType} from '@/lib/types';
+
 import { useState, useEffect } from "react";
 
 const Main = () => {
-  const [playState, setPlayState] = useState(false);
-  const [source , setSource] = useState<string | undefined>();
+  const [source , setSource] = useState<SourceDataType | undefined>();
   
-  const handlePlayButton = (type:string, src:string) => {
-    setSource(src);
-    setPlayState(true);
+  const handlePlayButton = (srcData: SourceDataType) => {
+    setSource(srcData);
   }  
 
   const handleCloseModal = () => {
     setSource(undefined);
-    setPlayState(false);
   }  
 
   return (
     <main>
-     <Navbar/>
+     <Navbar onContributeButtonClick={handlePlayButton}/>
      <Hero/>
      <div className="container">
        <About onPlayButtonClick={handlePlayButton}/>
@@ -41,7 +40,8 @@ const Main = () => {
        <Contact/>
        <Footer/>
      </div>
-     { source && <VideoPlayer playState={playState} src={source} handleClose={handleCloseModal}/>}
+     { source && <Modal src={source} handleClose={handleCloseModal}/>}
+     {/* { source && <VideoPlayer playState={playState} src={source} handleClose={handleCloseModal}/>} */}
     </main>
   );
 

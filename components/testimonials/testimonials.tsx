@@ -2,6 +2,7 @@
 import { useState, useRef, RefObject} from 'react';
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { FaRegPlayCircle } from "react-icons/fa";
+import {SourceType, SourceDataType} from '@/lib/types';
 
 import './testimonials.css';
 
@@ -20,7 +21,7 @@ const TestimonialsData = [
     },
 ]
 
-const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(type:string, src:string) => void}) => {
+const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
   const [delta, setDelta] = useState<number>(0);  
   const slider = useRef<HTMLUListElement | HTMLUListElement | null>(null);
 
@@ -49,7 +50,7 @@ const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(type:string, src:s
     (ref.current && ref.current?.offsetHeight < 300) ? 75 : 50;
 
   const handlePlayButton = (index:number) => {
-    onPlayButtonClick('video', TestimonialsData[index].src);
+    onPlayButtonClick({type:SourceType.video, data:TestimonialsData[index].src});
   }  
 
 

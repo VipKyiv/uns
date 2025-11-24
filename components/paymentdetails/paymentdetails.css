@@ -1,0 +1,86 @@
+.payment-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0,0,0, 0.9);
+    background: rgba(0,0,0); */
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.payment-data {
+    padding: 25px;
+    background-color: white;
+    width: 40%;
+    max-height: 600px;
+    border-radius: 10px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    color: #000;
+}
+.payment-data h2 {
+    color: olive;  
+}
+
+.qr-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.close-button {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+}
+
+.close-button button {
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    background-color: inherit;
+}
+
+@media (max-width: 1000px) {
+  .close-button {
+      top: 2px;
+      right: 2px;
+  }
+  .close-button button {
+    font-size: 25px;
+  }
+  .payment-data {
+    width: 65%;
+ }
+  .payment-data h3 {
+    font-size: 16px;
+  }
+
+
+}
+
+@media (max-width: 640px) {
+  .close-button {
+      top: 0;
+      right: 0;
+  }
+  .payment-data {
+    padding: 15px;
+ }
+  .payment-data h2 {
+    font-size: 18px;
+  }
+  .payment-data h3 {
+    font-size: 12px;
+  }
+}
