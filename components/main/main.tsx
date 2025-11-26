@@ -27,7 +27,7 @@ const Main = () => {
   return (
     <main>
      <Navbar onContributeButtonClick={handlePlayButton}/>
-     <Hero/>
+     <Hero  onPlayButtonClick={handlePlayButton}/>
      <div className="container">
        <About onPlayButtonClick={handlePlayButton}/>
        <Title title='Події' subtitle='Галерея фото'/>

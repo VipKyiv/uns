@@ -1,6 +1,7 @@
 import {SourceType, SourceDataType} from '@/lib/types';
 import VideoPlayer from "@/components/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
+import ShowImagesFolder from '@/components/showimagesfolder/showimagesfolder';
 
 type ModalProps = {
   src:SourceDataType,
@@ -13,7 +14,7 @@ const Modal = ({src, handleClose}:ModalProps) => {
     <>
       {src.type === SourceType.video && <VideoPlayer src={src.data} handleClose={handleClose}/>}
       {src.type === SourceType.paymentData && <PaymentDetails handleClose={handleClose}/>}
-      
+      {src.type === SourceType.imageFolder && <ShowImagesFolder  src={src.data} handleClose={handleClose}/>}
       {/* <div ref={playear} className={`video-player ${modalState ? '' : 'hide'}`} onClick={closePlayer} >
         <div className='close-button'>
           <button onClick={() => {videoRef.current?.pause();handleClose()}}><MdClose/></button>

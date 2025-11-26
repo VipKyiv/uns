@@ -14,7 +14,7 @@ const PaymentDetails = ({handleClose}:{handleClose:()=>void}) => {
   }
   return (
     // <div ref={playear} className={`video-player ${playState ? '' : 'hide'}`} onClick={closePlayer} >
-    <div ref={container} className='payment-container' onClick={closeModal} >
+    <div ref={container} className='modal-container' onClick={closeModal} >
       <div className='close-button'>
         <button onClick={() => {handleClose()}}><MdClose/></button>
       </div>
