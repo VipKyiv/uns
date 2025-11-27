@@ -1,4 +1,6 @@
+import { useEffect, useRef, MouseEvent} from 'react';
 import {SourceType, SourceDataType} from '@/lib/types';
+import { MdClose } from "react-icons/md";
 import VideoPlayer from "@/components/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
 import ShowImagesFolder from '@/components/showimagesfolder/showimagesfolder';
@@ -9,23 +11,32 @@ type ModalProps = {
 };
 
 const Modal = ({src, handleClose}:ModalProps) => {
+  const container =useRef<HTMLDivElement>(null);
 
-    return (
-    <>
-      {src.type === SourceType.video && <VideoPlayer src={src.data} handleClose={handleClose}/>}
-      {src.type === SourceType.paymentData && <PaymentDetails handleClose={handleClose}/>}
-      {src.type === SourceType.imageFolder && <ShowImagesFolder  src={src.data} handleClose={handleClose}/>}
-      {/* <div ref={playear} className={`video-player ${modalState ? '' : 'hide'}`} onClick={closePlayer} >
-        <div className='close-button'>
-          <button onClick={() => {videoRef.current?.pause();handleClose()}}><MdClose/></button>
-        </div>
-        <div>
-          <video ref={videoRef} controls autoPlay muted key={src.data}>
-            <source type="video/mp4" src={src.data}></source>
-          </video>
-        </div>
-      </div> */}
-    </>
+  useEffect(() => {   // remove scrolling on backgraund
+    const body = document.body;
+    body.classList.add('no-scroll');
+    return () => {
+      body.classList.remove('no-scroll');
+    };
+  }, []);
+  
+  const closeModal = (e: MouseEvent<HTMLDivElement>) => {
+      if(e.target === container.current) {
+        handleClose();
+      }
+    }
+  
+
+  return (
+    <div ref={container} className='modal-container' onClick={closeModal} >
+      <div className='close-button'>
+        <button onClick={() => {handleClose()}}><MdClose/></button>
+      </div>
+      {src.type === SourceType.video && <VideoPlayer src={src.data}/>}
+      {src.type === SourceType.paymentData && <PaymentDetails/>}
+      {src.type === SourceType.imageFolder && <ShowImagesFolder  src={src.data}/>}
+    </div> 
   )
 }
 

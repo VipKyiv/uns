@@ -66,9 +66,9 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
 
   useEffect(()=>{
     document.addEventListener("click", handleBurgerMenuClose);
-    window?.addEventListener('scroll', scrollY);
+    // window?.addEventListener('scroll', scrollY);
     return() => {
-      window?.removeEventListener('scroll', scrollY);
+      // window?.removeEventListener('scroll', scrollY);
       document.removeEventListener("click", handleBurgerMenuClose);
     }
     

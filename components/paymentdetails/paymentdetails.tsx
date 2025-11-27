@@ -1,23 +1,12 @@
-import { useRef, MouseEvent} from 'react';
-import { MdClose } from "react-icons/md";
+import { useRef} from 'react';
 import Image from 'next/image'
 import qrcode from '../../src/assets/QR-code.png'
 import './paymentdetails.css';
 
-const PaymentDetails = ({handleClose}:{handleClose:()=>void}) => {
+const PaymentDetails = () => {
   const container =useRef<HTMLDivElement>(null);
 
-  const closeModal = (e: MouseEvent<HTMLDivElement>) => {
-    if(e.target === container.current) {
-      handleClose();
-    }
-  }
   return (
-    // <div ref={playear} className={`video-player ${playState ? '' : 'hide'}`} onClick={closePlayer} >
-    <div ref={container} className='modal-container' onClick={closeModal} >
-      <div className='close-button'>
-        <button onClick={() => {handleClose()}}><MdClose/></button>
-      </div>
       <div className="payment-data">
         <h2>Реквізити для внеску:</h2>
         <br />
@@ -31,8 +20,6 @@ const PaymentDetails = ({handleClose}:{handleClose:()=>void}) => {
          <Image src={qrcode} alt="" width={300} height={350} />
         </div>
       </div>
-
-    </div>
   )
 }
 
