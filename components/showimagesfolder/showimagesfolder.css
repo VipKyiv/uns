@@ -51,3 +51,12 @@
     flex-basis: 65%;
   }
 }
+
+@media (max-width: 600px) {
+  .left-part {
+    flex-basis: 40%;
+  }
+  .right-part {
+    flex-basis: 60%;
+  }
+}
