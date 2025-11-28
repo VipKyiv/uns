@@ -1,0 +1,29 @@
+.modal {
+    position: fixed;   /* Stay in place */
+    left: 0;
+    top: 0;
+    z-index: 1000; /* Sit on top */
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(2px);     /* Apply backdrop blur effect */
+}
+
+.loader {
+    margin: 10% 45%;
+    border: 12px solid #f3f3f3;
+    border-radius: 100%;
+    border-top: 12px solid olive;
+    width: 90px;
+    height: 90px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

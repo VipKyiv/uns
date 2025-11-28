@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, Element } from "react-scroll";
 import {SourceType, SourceDataType} from '@/lib/types';
 import logo from '../../src/assets/Moneta_1.png'
+import faerbanka from '../../src/assets/faerbanka.png'
 import './navbar.css';
 
 const MenuItemsData = [
@@ -32,6 +33,13 @@ const MenuItemsData = [
     //   duration: 500,
     //   value: 'Партнери'  
     // },
+    { 
+      linkTo: 'faerbanka',
+      offset: -180,
+      duration: 500,
+      value: 'ФаєрБанка',
+      img: faerbanka,  
+    },
     { 
       linkTo: 'testimonials',
       offset: -150,
@@ -66,9 +74,9 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
 
   useEffect(()=>{
     document.addEventListener("click", handleBurgerMenuClose);
-    // window?.addEventListener('scroll', scrollY);
+    window?.addEventListener('scroll', scrollY);
     return() => {
-      // window?.removeEventListener('scroll', scrollY);
+      window?.removeEventListener('scroll', scrollY);
       document.removeEventListener("click", handleBurgerMenuClose);
     }
     
@@ -82,7 +90,7 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
      }
   }
   const scrollY = () => {
-      window?.scrollY > 50 ? setSticky(true) : setSticky(false);
+      window?.scrollY > 700 ? setSticky(true) : setSticky(false);
   }
 
   const handleBurgerMenuItemClick = () => {
@@ -95,25 +103,26 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
   }
 
   return (
-    <nav className='container'>
-      <img src={logo.src} alt='logo' className='logo'/>
+    <nav className='nav-container'>
+      <img src={logo.src} alt='logo' className={`logo ${sticky ? 'hide-logo': ''}` } />
       <ul ref={menu} className={`${isMobileMenuVisible ? 'mobile-menu' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
         {MenuItemsData.map((item, index) => (
           <li key={index}  className='menu-item'>
+            {item.img && <img src={item.img.src} alt='item-logo' className='item-logo'/>}
             <Link to={item.linkTo} smooth={true} offset={item.offset} duration={item.duration} onClick={handleBurgerMenuItemClick}>
              {item.value}
             </Link>
           </li>
         ))}
-        <li>
+        <li className='button-item'>
           <button className='btn' onClick={() => onContributeButtonClick({type:SourceType.paymentData, data:''})}>
             <FaCircleArrowRight className='left-arrow'/>
             Зробити внесок
           </button>
         </li>
       </ul>
-      <div ref={burgerMenuIcon}  onClick={handleBurgerMenuIconClick}>
-        <GiHamburgerMenu className='burger-menu'/>
+      <div ref={burgerMenuIcon}  onClick={handleBurgerMenuIconClick} className='burger-menu'>
+        <GiHamburgerMenu />
       </div>
     </nav>
   )

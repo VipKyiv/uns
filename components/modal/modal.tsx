@@ -1,9 +1,9 @@
 import { useEffect, useRef, MouseEvent} from 'react';
 import {SourceType, SourceDataType} from '@/lib/types';
 import { MdClose } from "react-icons/md";
-import VideoPlayer from "@/components/videoplayer/videoplayer";
+import VideoPlayer from "@/components/common/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
-import ShowImagesFolder from '@/components/showimagesfolder/showimagesfolder';
+import ShowImagesFolder from '@/components/common/showimagesfolder/showimagesfolder';
 
 type ModalProps = {
   src:SourceDataType,
