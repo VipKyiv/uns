@@ -26,6 +26,8 @@
 
 .faerbank-about-img {
     border-radius: 40%;
+    width: 230px;
+    height: 230px;
 }
 
 .faerbanka-left ul {
@@ -36,13 +38,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 40px 0;
-    width: 100%;
+    margin: 25px 0;
+    /* width: 100%; */
 }
 
 .faerbanka-gallery img{
     width: 23%;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {

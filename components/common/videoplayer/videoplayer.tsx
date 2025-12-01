@@ -2,7 +2,6 @@ import { useEffect, useRef} from 'react';
 import './videoplayer.css';
 
 const VideoPlayer = ({src}: {src:string}) => {
-  const playear =useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {   

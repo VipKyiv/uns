@@ -35,7 +35,7 @@ const Main = () => {
        {/* <Title title='Нам довіряють' subtitle='Партнери'/>
        <Partners/> */}
        <Title title='Проект ФаєрБанка' subtitle='Партнери'/>
-       <FaerBanka/>
+       <FaerBanka onPlayButtonClick={handlePlayButton}/>
        <Title title='Нам дякують' subtitle=''/>
        <Testimonials onPlayButtonClick={handlePlayButton}/>
        <Title title="Зв'яжіться з нами" subtitle='Наші контакти'/>

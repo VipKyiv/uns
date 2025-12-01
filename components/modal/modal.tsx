@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import VideoPlayer from "@/components/common/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
 import ShowImagesFolder from '@/components/common/showimagesfolder/showimagesfolder';
+import Carousel from '../common/carousel/carousel';
 
 type ModalProps = {
   src:SourceDataType,
@@ -36,6 +37,7 @@ const Modal = ({src, handleClose}:ModalProps) => {
       {src.type === SourceType.video && <VideoPlayer src={src.data}/>}
       {src.type === SourceType.paymentData && <PaymentDetails/>}
       {src.type === SourceType.imageFolder && <ShowImagesFolder  src={src.data}/>}
+      {src.type === SourceType.mixed && <Carousel src={src.data}/>}
     </div> 
   )
 }

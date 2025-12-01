@@ -1,14 +1,45 @@
-import Image from 'next/image'
+import { useState, useEffect} from 'react';
+import {getFilesListAction} from '@/lib/serveractions';
+import Image from 'next/image';
+import Loader from '@/components/common/loader/loader'
 import { GoArrowRight } from "react-icons/go";
 import logo from '../../src/assets/faerbanka/fb_logo.png'
-import gallery_1 from '../../src/assets/faerbanka/fb_photo_1.jpg';
-import gallery_2 from '../../src/assets/faerbanka/fb_photo_2.jpg';
-import gallery_3 from '../../src/assets/faerbanka/fb_photo_5.jpg';
-import gallery_4 from '../../src/assets/faerbanka/fb_photo_4.jpg';
+import {SourceType, SourceDataType} from '@/lib/types';
 
 import './faerbanka.css';
 
-const FaerBanka = () => {
+const FaerBanka = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
+  const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>();
+
+  useEffect(() => {
+    const getFilesList = async () => {
+      const getData = await getFilesListAction('mixed','faerbanka');
+      if (getData.returnStatus) {
+        const fileData = await JSON.parse(getData.payload);
+        setFileList(fileData);
+      } else {
+        // set error
+      }
+    }
+    setIsLoading(true);
+    getFilesList().then(()=>{
+    //   setFormData(prepearingDGData(dbData));
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading)
+    return (<Loader />);
+
+  const imageList = [];
+  if(fileList.length > 4) {
+    for (let i = 0; i < 4; i++) {
+      imageList.push(<img key={i} src={fileList[i].filePath} alt='' 
+                          onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:`faerbanka;${i}`})}/>);
+    }
+  }
   return (
     <div className='faerbanka'>
       <div className='faerbanka-about'>
@@ -29,12 +60,11 @@ const FaerBanka = () => {
         </div>
       </div>
       <div  className='faerbanka-gallery'>
-        <img src={gallery_1.src} alt='' />
-        <img src={gallery_2.src} alt='' />
-        <img src={gallery_3.src} alt='' />
-        <img src={gallery_4.src} alt='' />
+        {imageList}
       </div> 
-      <button className='btn'>Тут більше ...<GoArrowRight/></button>
+      <button className='btn' onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:`faerbanka`})}>
+        Тут більше ...<GoArrowRight/>
+      </button>
     </div>
   )
 }

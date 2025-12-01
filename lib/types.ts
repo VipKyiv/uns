@@ -2,6 +2,7 @@ export enum SourceType {
    video,
    text,
    image,
+   mixed,
    imageFolder,
    paymentData    
 }
