@@ -17,13 +17,13 @@ const MenuItemsData = [
     },
     { 
       linkTo: 'about',
-      offset: -100,
+      offset: -180,
       duration: 500,
       value: 'Про нас'  
     },
     { 
       linkTo: 'events',
-      offset: -200,
+      offset: -270,
       duration: 500,
       value: 'Події'  
     },
@@ -35,14 +35,14 @@ const MenuItemsData = [
     // },
     { 
       linkTo: 'faerbanka',
-      offset: -180,
+      offset: -260,
       duration: 500,
       value: 'ФаєрБанка',
       img: faerbanka,  
     },
     { 
       linkTo: 'testimonials',
-      offset: -150,
+      offset: -250,
       duration: 500,
       value: 'Відгуки'  
     },
@@ -58,6 +58,7 @@ const MenuItemsData = [
 
 const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:SourceDataType) => void}) => {
   const [sticky, setSticky] = useState(false);
+  const [hideLogo, setHideLogo] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   const menu = useRef<HTMLUListElement | HTMLUListElement | null>(null);
   const burgerMenuIcon = useRef<HTMLDivElement>(null);
@@ -90,7 +91,8 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
      }
   }
   const scrollY = () => {
-      window?.scrollY > 700 ? setSticky(true) : setSticky(false);
+      // window?.scrollY > 700 ? setHideLogo(true) : setHideLogo(false);
+      window?.scrollY > 200 ? setSticky(true) : setSticky(false);
   }
 
   const handleBurgerMenuItemClick = () => {
@@ -103,8 +105,12 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
   }
 
   return (
-    <nav className='nav-container'>
-      <img src={logo.src} alt='logo' className={`logo ${sticky ? 'hide-logo': ''}` } />
+    <nav className={`nav-container ${sticky ? 'blur': ''}`}>
+      {/* <div className={`${sticky ? 'blur': ''}` }> */}
+        <img src={logo.src} alt='logo' className={`logo ${hideLogo ? 'hide-logo': ''}` } />
+        <h1 className={`${hideLogo ? 'hide-logo': ''}`}>У.Н.С.</h1>
+{/* 
+      </div> */}
       <ul ref={menu} className={`${isMobileMenuVisible ? 'mobile-menu' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
         {MenuItemsData.map((item, index) => (
           <li key={index}  className='menu-item'>

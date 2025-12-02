@@ -1,5 +1,5 @@
 import './about.css';
-import about_img from '../../src/assets/uns-1.jpg';
+import about_img from '../../src/assets/uns-2.jpg';
 import { FaRegPlayCircle } from "react-icons/fa";
 import {SourceType, SourceDataType} from '@/lib/types';
 
@@ -12,10 +12,10 @@ const About = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) =
         <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick({type:SourceType.video, data:'videos/video.mp4'})}/>
       </div>
       <div className="about-right">
-        <h3> Про Фонд</h3>
+        <h3> Про БФ У.Н.С.</h3>
         <h2>Тиша, в якій працюють герої — потребує наших голосів.</h2>
         <p> 
-            Ми — волонтерська ініціатива, яка допомагає українським військовим розвідникам.
+            Благодійний Фонд УНС — волонтерська ініціатива, яка допомагає українським військовим розвідникам.
             Без гучних слів і великих сцен — лише точна робота, підтримка й турбота про тих, хто щодня залишається в тіні.
 
         </p>

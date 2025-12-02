@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef, TouchEvent} from 'react';
 import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
 import Loader from '@/components/common/loader/loader';
@@ -8,10 +8,13 @@ import './carousel.css';
 const Carousel = ( {src} : {src: string}) => {
   const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
+  const minSwipeDistance = 50; 
 
   useEffect(() => {
     const sourceData = src.split(';');
@@ -44,12 +47,39 @@ const Carousel = ( {src} : {src: string}) => {
     setCurrentIndex(currentIndex => currentIndex === fileList.length - 1 ? 0 : currentIndex + 1);
   }  
 
+  const handleTouchStart = (e:TouchEvent<HTMLDivElement>) => {
+    setTouchEndX(0); // Скинути кінцеву позицію на початку нового дотику
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e:TouchEvent<HTMLDivElement>) => {
+    setTouchEndX(e.targetTouches[0].clientX); 
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchEndX) return; // Якщо руху не було, виходимо
+    
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe || isRightSwipe) {
+      if (isLeftSwipe) {
+        handleBack();
+      } else if (isRightSwipe) {
+         handleForward();      
+      }
+    }
+  };
   if (isLoading || fileList.length === 0)
     return (<Loader />);
 
   return (
     <div className="carousel">
-        <div className="slides">
+        <div className="slides" 
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}>
           {fileList[currentIndex].fileType === 'image' && <img alt='' src={fileList[currentIndex].filePath} />}
           {/* {fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
                    style={{ objectFit: "contain", borderRadius:"10px"}}/>} */}
