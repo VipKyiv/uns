@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, TouchEvent} from 'react';
+import { useState, useEffect, TouchEvent} from 'react';
 import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
 import Loader from '@/components/common/loader/loader';
@@ -12,11 +12,11 @@ const Carousel = ( {src} : {src: string}) => {
   const [touchEndX, setTouchEndX] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const minSwipeDistance = 50; 
 
   useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
     const sourceData = src.split(';');
     if(sourceData.length > 1)
       setCurrentIndex(Number(sourceData[1]))
@@ -36,7 +36,24 @@ const Carousel = ( {src} : {src: string}) => {
     //   setFormData(prepearingDGData(dbData));
       setIsLoading(false);
     });
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+
   }, []);
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    // Деструктуризація для зручності
+    const { key } = event;
+
+    if (key === 'ArrowLeft') {
+      handleBack();
+      event.preventDefault(); 
+    } else if (key === 'ArrowRight') {
+       handleForward();
+      event.preventDefault(); 
+    }
+  };
 
   const handleBack = () => {
     setCurrentIndex(currentIndex => currentIndex === 0 ? fileList.length - 1 : currentIndex - 1);

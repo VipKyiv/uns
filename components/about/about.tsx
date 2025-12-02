@@ -1,15 +1,15 @@
+import {SourceDataType} from '@/lib/types';
+import GridGallary from "@/components/common/gridgallery/gridgallery";
 import './about.css';
-import about_img from '../../src/assets/uns-2.jpg';
-import { FaRegPlayCircle } from "react-icons/fa";
-import {SourceType, SourceDataType} from '@/lib/types';
 
 const About = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
 
   return (
     <div className='about'>
       <div className="about-left">
-        <img src={about_img.src} alt='img' className='about-img'/>
-        <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick({type:SourceType.video, data:'videos/video.mp4'})}/>
+        {/* <img src={about_img.src} alt='img' className='about-img'/>
+        <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick({type:SourceType.video, data:'videos/video.mp4'})}/> */}
+        <GridGallary src='about' onImageClick={onPlayButtonClick}/>   
       </div>
       <div className="about-right">
         <h3> Про БФ У.Н.С.</h3>

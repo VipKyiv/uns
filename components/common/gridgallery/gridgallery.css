@@ -1,0 +1,30 @@
+.grid-item-container {
+  /* Встановлюємо фіксоване співвідношення сторін (наприклад, квадрат 1:1) */
+  /* Це найпростіший спосіб зробити квадрат, незалежно від ширини сітки */
+  width: 100%;
+  padding-top: 100%; /* Забезпечує висоту, що дорівнює ширині */
+  position: relative; /* Необхідно для позиціонування зображення всередині */
+  overflow: hidden; /* Обрізає зайве зображення, якщо воно виходить за межі */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.grid-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.grid-image:hover {
+  transform: scale(1.05);
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 7px; 
+}

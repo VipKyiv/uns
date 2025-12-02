@@ -15,8 +15,8 @@ nav{
 .logo {
     padding-top: 10px;
     padding-left: 20px;
-    width: 160px;
-}
+    width: 130px;
+ }
 .logo-container {
   width: 40%;
   display: flex;
@@ -118,6 +118,7 @@ nav ul li {
    nav h2 {
     font-size: 20px;
    }
+
    nav ul {
     position:fixed;
     top: 0;
@@ -155,6 +156,11 @@ nav ul li {
   }
 }
 
+@media (max-width: 645px) {
+   nav h2 {
+    font-size: 16px;
+   }
+  }
 @media (max-height: 700px) {
   .logo {
     width: 100px;
