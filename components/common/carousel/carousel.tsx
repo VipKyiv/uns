@@ -80,9 +80,9 @@ const Carousel = ( {src} : {src: string}) => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}>
-          {fileList[currentIndex].fileType === 'image' && <img alt='' src={fileList[currentIndex].filePath} />}
-          {/* {fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
-                   style={{ objectFit: "contain", borderRadius:"10px"}}/>} */}
+          {/* {fileList[currentIndex].fileType === 'image' && <img alt='' src={fileList[currentIndex].filePath} />} */}
+          {fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
+                   style={{ objectFit: "contain", borderRadius:"10px"}}/>}
           
           {fileList[currentIndex].fileType === 'video' &&  
              <video  key={fileList[currentIndex].filePath} controls autoPlay muted

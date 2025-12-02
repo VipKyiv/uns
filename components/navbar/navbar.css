@@ -17,7 +17,14 @@ nav{
     padding-left: 20px;
     width: 160px;
 }
+.logo-container {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
 
+}
 .hide-logo {
   visibility: hidden;
 }

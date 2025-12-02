@@ -42,7 +42,7 @@ const MenuItemsData = [
     },
     { 
       linkTo: 'testimonials',
-      offset: -250,
+      offset: -230,
       duration: 500,
       value: 'Відгуки'  
     },
@@ -106,11 +106,8 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
 
   return (
     <nav className={`nav-container ${sticky ? 'blur': ''}`}>
-      {/* <div className={`${sticky ? 'blur': ''}` }> */}
         <img src={logo.src} alt='logo' className={`logo ${hideLogo ? 'hide-logo': ''}` } />
-        <h1 className={`${hideLogo ? 'hide-logo': ''}`}>У.Н.С.</h1>
-{/* 
-      </div> */}
+        <h2 className={`${isMobileMenuVisible ? 'hide-logo': ''}`}>Благодійний фонд У.Н.С.</h2>
       <ul ref={menu} className={`${isMobileMenuVisible ? 'mobile-menu' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
         {MenuItemsData.map((item, index) => (
           <li key={index}  className='menu-item'>

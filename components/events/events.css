@@ -14,9 +14,12 @@
 .gallery img{
     width: 23%;
     border-radius: 10px;
+    cursor: pointer;
+    height: 300px;
+    object-fit: cover;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
     .gallery {
         /* flex-direction: column; */
         flex-wrap: wrap;
@@ -26,3 +29,4 @@
       margin-bottom: 25px;
     }
 }
+

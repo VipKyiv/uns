@@ -31,7 +31,7 @@ const Main = () => {
      <div className="container">
        <About onPlayButtonClick={handlePlayButton}/>
        <Title title='Події' subtitle='Галерея фото'/>
-       <Events/>
+       <Events onPlayButtonClick={handlePlayButton}/>
        {/* <Title title='Нам довіряють' subtitle='Партнери'/>
        <Partners/> */}
        <Title title='Проект ФаєрБанка' subtitle='Партнери'/>
