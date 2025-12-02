@@ -5,4 +5,8 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
+module.exports = {
+  output: 'export'
+};
+
 export default withNextVideo(nextConfig, { folder: 'y' });
