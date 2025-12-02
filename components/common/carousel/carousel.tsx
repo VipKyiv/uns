@@ -65,9 +65,9 @@ const Carousel = ( {src} : {src: string}) => {
 
     if (isLeftSwipe || isRightSwipe) {
       if (isLeftSwipe) {
-        handleBack();
+        handleForward();
       } else if (isRightSwipe) {
-         handleForward();      
+        handleBack();
       }
     }
   };
