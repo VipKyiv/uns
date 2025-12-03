@@ -17,6 +17,11 @@
     cursor: pointer;
     height: 300px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
 }
 
 @media (max-width: 800px) {

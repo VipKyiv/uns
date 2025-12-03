@@ -40,12 +40,6 @@ const ShowImagesFolder = ( {src} : {src: string}) => {
   return (
     <>
       { fileList.length > 0 && <div className="images">
-         <div className="left-part">
-          {fileList.map((item, index) => <Image src={item} key={item} alt="" width={imageSize} height={imageSize} 
-                                          style={{cursor: "pointer", borderRadius: "7px"}}
-                                          onMouseOver={() => setCurrentImage(index)}
-                                          onClick={() => setCurrentImage(index)}/>)}
-         </div>
          <div className="right-part">
            <Image 
               src={fileList[currentImage]} alt="image" 
@@ -53,6 +47,17 @@ const ShowImagesFolder = ( {src} : {src: string}) => {
               sizes="100vw"
               style={{ objectFit: "contain", borderRadius:"10px"}}
             />
+         </div>
+         <div className="left-part">
+          {fileList.map((item, index) => 
+          <img key={index} src={item} alt='' onMouseOver={() => setCurrentImage(index)}
+                                          onClick={() => setCurrentImage(index)}
+                                          style={{cursor: "pointer", borderRadius: "7px"}}/>)}
+          {/* <Image src={item} key={item} alt="" 
+                                          layout="fill" objectFit="cover" className="grid-image"
+                                          style={{cursor: "pointer", borderRadius: "7px"}}
+                                          onMouseOver={() => setCurrentImage(index)}
+                                          onClick={() => setCurrentImage(index)}/>)} */}
          </div>
       </div>}
     </>

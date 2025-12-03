@@ -46,6 +46,11 @@
     width: 23%;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.faerbanka-gallery img:hover{
+  transform: scale(1.05);
 }
 
 @media (max-width: 800px) {
