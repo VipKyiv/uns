@@ -7,16 +7,24 @@ import {SourceType, SourceDataType} from '@/lib/types';
 import './testimonials.css';
 
 const TestimonialsData = [
-    { src: 'videos/testimonials/IMG_7621.MP4',
+    { 
+      video: 'videos/testimonials/IMG_7621.MP4',
+      image: 'videos/testimonials/IMG_7621.jpg',
       text: 'Висловлюємо подяку хлопцям з фонду УНС за чергову і своєчасну допомогу.'  
     },
-    { src: 'videos/testimonials/IMG_7622.MP4',
+    { 
+      video: 'videos/testimonials/IMG_7622.mp4',
+      image: 'videos/testimonials/IMG_7622.jpg',
       text: 'Дякуємо фонду УНС та компанії Globallogic за РЕБи та Старлінки.'  
     },
-    { src: 'videos/testimonials/IMG_7623.MP4',
+    { 
+      video: 'videos/testimonials/IMG_7623.mp4',
+      image: 'videos/testimonials/IMG_7623.jpg',
       text: 'Хочемо висловити велику подяку від нашого підрозділу за оперативний збір та закупівлю двох РЕБів.'  
     },
-    { src: 'videos/testimonials/IMG_7624.MP4',
+    { 
+      video: 'videos/testimonials/IMG_7624.mp4',
+      image: 'videos/testimonials/IMG_7624.jpg',
       text: 'Дякуємо хлопцям з фонду УНС за придбаний ними Старлінк та три чудових смартфони.'  
     },
 ]
@@ -50,7 +58,7 @@ const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceData
     (ref.current && ref.current?.offsetHeight < 300) ? 75 : 50;
 
   const handlePlayButton = (index:number) => {
-    onPlayButtonClick({type:SourceType.video, data:TestimonialsData[index].src});
+    onPlayButtonClick({type:SourceType.video, data:TestimonialsData[index].video});
   }  
 
 
@@ -75,9 +83,10 @@ function Slide({index, onPlayButtonClick}:{index:number, onPlayButtonClick: (ind
   return(
     <div className="list-item">
         <div className="item-left">
-            <video>
+            {/* <video playsInline={false}>
               <source type="video/mp4" src={TestimonialsData[index].src}></source>
-            </video>
+            </video> */}
+            <img src={TestimonialsData[index].image} alt='' />
             <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick(index)}/>
         </div>
         <div className="item-right"> {TestimonialsData[index].text}</div>
