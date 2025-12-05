@@ -112,19 +112,21 @@
 }
 
 @media (max-width: 600px) {
-    .item-left {
+    /* .item-left {
       flex-basis: 40%;
-    }
+    } */
     .item-right {
-      font-size: 11px;
+      font-size: 12px;
       /* display: none; */
     }
 
-    .slider {
-        height: 200px;
-    }
+    /* .slider {
+        height: 50%;
+    } */
     .list-item {
-      height: 160px;
+      flex-direction: column;
+      gap: 10px;
+      /* height: 160px; */
     }
     .item-left video {
       height: 100px;
