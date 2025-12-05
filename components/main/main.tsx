@@ -47,7 +47,6 @@ const Main = () => {
        <Footer/>
      </div>
      { source && <Modal src={source} handleClose={handleCloseModal}/>}
-     {/* { source && <VideoPlayer playState={playState} src={source} handleClose={handleCloseModal}/>} */}
     </main>
   );
 

@@ -16,7 +16,6 @@ const Carousel = ( {src} : {src: string}) => {
   const minSwipeDistance = 50; 
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
     const sourceData = src.split(';');
     if(sourceData.length > 1)
       setCurrentIndex(Number(sourceData[1]))
@@ -36,22 +35,28 @@ const Carousel = ( {src} : {src: string}) => {
     //   setFormData(prepearingDGData(dbData));
       setIsLoading(false);
     });
+
+  }, []);
+
+ useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
 
-  }, []);
+ }, [fileList]);
+
 
   const handleKeyDown = (event: KeyboardEvent) => {
     // Деструктуризація для зручності
     const { key } = event;
 
     if (key === 'ArrowLeft') {
+      event.preventDefault(); 
       handleBack();
-      event.preventDefault(); 
     } else if (key === 'ArrowRight') {
-       handleForward();
       event.preventDefault(); 
+       handleForward();
     }
   };
 
@@ -60,7 +65,6 @@ const Carousel = ( {src} : {src: string}) => {
   }
 
   const handleForward = () => {
-    const cuttent = currentIndex;
     setCurrentIndex(currentIndex => currentIndex === fileList.length - 1 ? 0 : currentIndex + 1);
   }  
 
@@ -75,7 +79,6 @@ const Carousel = ( {src} : {src: string}) => {
 
   const handleTouchEnd = () => {
     if (!touchEndX) return; // Якщо руху не було, виходимо
-    
     const distance = touchStartX - touchEndX;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -88,6 +91,7 @@ const Carousel = ( {src} : {src: string}) => {
       }
     }
   };
+
   if (isLoading || fileList.length === 0)
     return (<Loader />);
 
@@ -98,10 +102,10 @@ const Carousel = ( {src} : {src: string}) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}>
           {/* {fileList[currentIndex].fileType === 'image' && <img alt='' src={fileList[currentIndex].filePath} />} */}
-          {fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
+          {fileList[currentIndex] && fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
                    style={{ objectFit: "contain", borderRadius:"10px"}}/>}
           
-          {fileList[currentIndex].fileType === 'video' &&  
+          {fileList[currentIndex] && fileList[currentIndex].fileType === 'video' &&  
              <video  key={fileList[currentIndex].filePath} controls autoPlay muted
                       style={{height:"95vh", width:"100vw"}}>
               <source type="video/mp4" src={fileList[currentIndex].filePath}></source>

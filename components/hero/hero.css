@@ -11,8 +11,8 @@
 }
 
 .hero-text {
-    text-align: center;
-    max-width:800px;
+    text-align : center;
+    max-width : 70%;
 }
 
 .hero-text h1{
@@ -20,15 +20,26 @@
     font-weight: 600;
 }
 
+.hero-text h3{
+    margin: 20px auto;
+    font-size: 32px;
+    font-weight: 600;
+}
+
 .hero-text p{
-  max-width: 700px;
-  margin: 10px auto 20px;
+  /* max-width: 700px; */
+  margin: 50px auto;
+  font-style: italic;
 }
 
 @media (max-width: 850px) {
   .hero-text h1{
     font-size: 35px;
   }
+  .hero-text h3{
+    font-size: 24px;
+}
+
 }
 
 @media (max-width: 700px) {
@@ -37,9 +48,13 @@
     max-width: 400px;
     margin: auto;
   }
-  .hero-text p{
+ .hero-text h3{
+    margin: 10px auto;
+    font-size: 20px;
+}
+ .hero-text p{
     max-width: 400px;
-    font-size: 14px;
-    margin: 15px auto 30px;
+    font-size: 12px;
+    margin: 30px auto;
   }
 }
