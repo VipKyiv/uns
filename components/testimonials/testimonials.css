@@ -113,20 +113,21 @@
 
 @media (max-width: 600px) {
     .item-left {
-      flex-basis: 100%;
+      flex-basis: 40%;
     }
     .item-right {
-      display: none;
+      font-size: 11px;
+      /* display: none; */
     }
 
     .slider {
         height: 200px;
     }
     .list-item {
-      height: 180px;
+      height: 160px;
     }
     .item-left video {
-      height: 150px;
+      height: 100px;
     }
 }
 

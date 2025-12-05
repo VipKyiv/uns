@@ -11,7 +11,9 @@ import Partners from "@/components/partners/partners";
 import Testimonials from "@/components/testimonials/testimonials";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/footer";
-import FaerBanka from "../faerbanka/faerbanka";
+import FaerBanka from "@/components/faerbanka/faerbanka";
+import OurHeroes from "@/components/ourheroes/ourheroes";
+
 
 const Main = () => {
   const [source , setSource] = useState<SourceDataType | undefined>();
@@ -30,14 +32,16 @@ const Main = () => {
      <Hero  onPlayButtonClick={handlePlayButton}/>
      <div className="container">
        <About onPlayButtonClick={handlePlayButton}/>
-       <Title title='Події' subtitle='Галерея фото'/>
+       {/* <Title subtitle='Наші Герої та Друзі' title='Забезпечуючи Успіх.'/>
+       <OurHeroes onPlayButtonClick={handlePlayButton}/> */}
+       <Title title='Події' subtitle='Наше дозвілля'/>
        <Events onPlayButtonClick={handlePlayButton}/>
        {/* <Title title='Нам довіряють' subtitle='Партнери'/>
        <Partners/> */}
-       <Title title='Проект ФаєрБанка' subtitle='Партнери'/>
-       <FaerBanka onPlayButtonClick={handlePlayButton}/>
        <Title title='Нам дякують' subtitle=''/>
        <Testimonials onPlayButtonClick={handlePlayButton}/>
+       <Title title='Проект ФаєрБанка' subtitle=''/>
+       <FaerBanka onPlayButtonClick={handlePlayButton}/>
        <Title title="Зв'яжіться з нами" subtitle='Наші контакти'/>
        <Contact/>
        <Footer/>

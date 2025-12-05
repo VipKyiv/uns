@@ -96,7 +96,7 @@ nav ul li {
   overflow-y: auto;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1500px) {
   .menu-item {
     padding: 8px 18px;
   }
@@ -149,20 +149,24 @@ nav ul li {
    .burger-menu {
     display: block;
     cursor: pointer;
+    font-size: 32px;
    }
   .logo {
-    width: 100px;
+    width: 80px;
     padding-left: 5px;
   }
 }
 
 @media (max-width: 645px) {
+  .logo {
+    width: 70px;
+  }
    nav h2 {
     font-size: 16px;
    }
   }
-@media (max-height: 700px) {
+/* @media (max-height: 700px) {
   .logo {
     width: 100px;
   }
-}
+} */

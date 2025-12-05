@@ -40,7 +40,7 @@ const ShowImagesFolder = ( {src} : {src: string}) => {
   return (
     <>
       { fileList.length > 0 && <div className="images">
-         <div className="right-part">
+         <div className="top-part">
            <Image 
               src={fileList[currentImage]} alt="image" 
               fill
@@ -48,7 +48,7 @@ const ShowImagesFolder = ( {src} : {src: string}) => {
               style={{ objectFit: "contain", borderRadius:"10px"}}
             />
          </div>
-         <div className="left-part">
+         <div className="bottom-part">
           {fileList.map((item, index) => 
           <img key={index} src={item} alt='' onMouseOver={() => setCurrentImage(index)}
                                           onClick={() => setCurrentImage(index)}

@@ -11,10 +11,22 @@
     width: 100%;
     height: 100vh;
 }
-
-.prev-btn, .next-btn {
+.next-btn, .prev-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
     background-color: inherit;
     border: none;
+}
+
+.prev-btn {
+    right: auto;
+    left: 0;
 }
 
 .carousel-pagination {

@@ -3,9 +3,15 @@ import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
 import Loader from '@/components/common/loader/loader';
 import {SourceType, SourceDataType} from '@/lib/types';
-import './gridgallery.css'; // Імпортуємо ваші стилі
+import './gridgallery.css'; 
 
-const GridGallary = ( {src, onImageClick} : {src: string, onImageClick:(srcData:SourceDataType) => void}) => {
+type PropsType = {
+  src : string,
+  imgNumber? : number,
+  onImageClick:(srcData:SourceDataType) => void,
+};
+
+const GridGallary = ( {src, imgNumber = 9, onImageClick} : PropsType) => {
   const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
@@ -28,8 +34,8 @@ const GridGallary = ( {src, onImageClick} : {src: string, onImageClick:(srcData:
   }, []);
 
   const imageList = [];
-  if(fileList.length >= 9) {
-    for (let i = 0; i < 9; i++) {
+  if(fileList.length >= imgNumber) {
+    for (let i = 0; i < imgNumber; i++) {
       imageList.push(
          <Image key={i} src={fileList[i].filePath} alt={`Image ${i + 1}`} 
                 layout="fill" objectFit="cover" className="grid-image"

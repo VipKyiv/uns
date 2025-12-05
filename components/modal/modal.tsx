@@ -4,7 +4,7 @@ import { MdClose } from "react-icons/md";
 import VideoPlayer from "@/components/common/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
 import ShowImagesFolder from '@/components/common/showimagesfolder/showimagesfolder';
-import Carousel from '../common/carousel/carousel';
+import Carousel from '@/components/common/carousel/carousel';
 
 type ModalProps = {
   src:SourceDataType,

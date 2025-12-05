@@ -4,7 +4,7 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, Element } from "react-scroll";
 import {SourceType, SourceDataType} from '@/lib/types';
-import logo from '../../src/assets/Moneta_1.png'
+import logo from '@/src/assets/Moneta_1.png'
 import faerbanka from '../../src/assets/faerbanka.png'
 import './navbar.css';
 
@@ -21,30 +21,29 @@ const MenuItemsData = [
       duration: 500,
       value: 'Про нас'  
     },
+    // { 
+    //   linkTo: 'ourheroes',
+    //   offset: -320,
+    //   duration: 500,
+    //   value: 'Наші Герої'  
+    // },
     { 
       linkTo: 'events',
       offset: -270,
       duration: 500,
       value: 'Події'  
     },
-    // { 
-    //   linkTo: 'partners',
-    //   offset: -180,
-    //   duration: 500,
-    //   value: 'Партнери'  
-    // },
-    { 
-      linkTo: 'faerbanka',
-      offset: -260,
-      duration: 500,
-      value: 'ФаєрБанка',
-      img: faerbanka,  
-    },
     { 
       linkTo: 'testimonials',
       offset: -230,
       duration: 500,
       value: 'Відгуки'  
+    },
+    { 
+      linkTo: 'faerbanka',
+      offset: -200,
+      duration: 500,
+      value: 'ФаєрБанка',
     },
     { 
       linkTo: 'contact',
@@ -107,11 +106,10 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
   return (
     <nav className={`nav-container ${sticky ? 'blur': ''}`}>
         <img src={logo.src} alt='logo' className={`logo ${hideLogo ? 'hide-logo': ''}` } />
-        <h2 className={`${isMobileMenuVisible ? 'hide-logo': ''}`}>Благодійний фонд У.Н.С.</h2>
+        <h2 className={`${isMobileMenuVisible ? 'hide-logo': ''}`}>Благодійний Фонд У.Н.С.</h2>
       <ul ref={menu} className={`${isMobileMenuVisible ? 'mobile-menu' : 'hide-mobile-menu'} ${sticky ? 'blur': ''}`}>
         {MenuItemsData.map((item, index) => (
           <li key={index}  className='menu-item'>
-            {item.img && <img src={item.img.src} alt='item-logo' className='item-logo'/>}
             <Link to={item.linkTo} smooth={true} offset={item.offset} duration={item.duration} onClick={handleBurgerMenuItemClick}>
              {item.value}
             </Link>
@@ -125,7 +123,7 @@ const  Navbar = ({onContributeButtonClick} : {onContributeButtonClick:(srcData:S
         </li>
       </ul>
       <div ref={burgerMenuIcon}  onClick={handleBurgerMenuIconClick} className='burger-menu'>
-        <GiHamburgerMenu />
+        <GiHamburgerMenu/>
       </div>
     </nav>
   )
