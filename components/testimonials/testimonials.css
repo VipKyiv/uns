@@ -121,12 +121,12 @@
 
     .list-item {
       /* margin: 10px; */
-      padding-top: 25px;    
+      padding: 30px 5px;    
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
     }
     .item-left video {
-      height: 110px;
+      height: 100px;
     }
 }
 
