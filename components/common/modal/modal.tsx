@@ -28,7 +28,7 @@ const Modal = ({name, children, handleClose} : ModalProps) => {
   }, [handleClose]);
 
   const handleOutsideClose = useCallback(() => {
-    if (window.location.hash === '#modal') {
+    if (window.location.hash === `#${name}`) {
        window.history.back(); 
     }
     handleClose(); // Call the parent state handler
