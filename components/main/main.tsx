@@ -57,7 +57,7 @@ const Main = () => {
        <Contact/>
        <Footer/>
      </div>
-     { source && <Modal handleClose={handleCloseModal}>{childrenComponent}</Modal>}
+     { source && <Modal name={'main_modal'} handleClose={handleCloseModal}>{childrenComponent}</Modal>}
     </main>
   );
 

@@ -1,141 +1,77 @@
 .testimonials {
-    margin: 30px auto 80px ;
-    padding: 0 80px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; /* Обмеження для великих екранів */
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
-.next-btn, .prev-btn {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 50px;
-    cursor: pointer;
-    color: white;
-    font-size: 32px;
+.gallery-grid {
+  display: grid;
+  /* 2.1. Базовий (повний екран): 2 рядки, 3 стовпчики (3x2) */
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
 }
 
-.prev-btn {
-    right: auto;
-    left: 0;
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid olive;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background-color: white;
 }
 
-.slider {
-    overflow: hidden;
-    color: white;
-    height: 320px;
+.image-wrapper {
+  position: relative; 
+  height: 250px; 
+  width: 100%;
 }
 
-.slider ul {
-    display: flex;
-    width: 200%;
-    height: 100%;
-    overflow-x: hidden;
-    transition: 0.5s;
+.image-wrapper img:hover{
+  transform: scale(1.05);
 }
 
-.slider ul li{
-    list-style: none;
-    width: 25%;
-    padding: 10px;
+.gallery-item-text {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
 }
 
-.list-item {
-    padding: 40px;
-    border-radius: 10px;
-    color: #676767;
-    line-height: 1.4;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 300px;
+/* 2.2. Адаптивність: 3 рядки, 2 стовпчики (@media max-width: 900px) */
+@media (max-width: 900px) {
+  .gallery-grid {
+    /* 3 рядки, 2 стовпчики (2x3) */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-wrapper {
+    height: 150px;
+  }
 }
 
-.item-left {
-   flex-basis: 40%;
-   position: relative;
-}
-.item-right {
-    flex-basis: 50%;
-    padding-left: 10px;
-}
-
-.play-icon{
-    width: 60px;
-    color:rgb(228, 237, 228);
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 40%;;
-    transform: translate(-50%, -50%);
-    font-size: 52px;
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 15px;
+  transition: opacity 0.3s;
 }
 
-.item-left video {
-    width: 250px;
-    height: 200px;
-}
-.item-left img {
-    width: 80%;
-    height: 100%;
+.nav-button:disabled {
+  visibility: hidden;
+  /* opacity: 0.3;
+  cursor: default; */
 }
 
-@media (max-width: 1200px) {
-    .slider ul li{
-        padding: 10px;
-    }
-
-    .list-item {
-      width: 100%;
-      height: 250px;
-    }
-
-   /* .item-left img {
-      width: 80%;
-      height: 100px;
-    } */
-
-    .play-icon{
-      width: 40px;
-      /* left: 50%;; */
-      font-size: 32px;;
-    }
-
+.nav-button:not(:disabled):hover {
+  color: olive;
 }
-
-@media (max-width: 840px) {
-    .slider ul li{
-      padding: 3px;
-    }
-   .slider ul {
-      width: 400%;
-    }   
-    .slider {
-        height: 260px;
-    }
-}
-
-@media (max-width: 600px) {
-    .item-right {
-      font-size: 12px;
-    }
-    .slider {
-      margin-bottom: 20px;
-    }
-
-    .list-item {
-      /* margin: 10px; */
-      padding: 30px 5px;    
-      flex-direction: column;
-      gap: 5px;
-    }
-    .item-left img {
-      width: 100%;
-      height: 120px;
-    }
-    .play-icon{
-      left: 50%;;
-    }
-}
-

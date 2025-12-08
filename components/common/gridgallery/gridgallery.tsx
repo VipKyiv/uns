@@ -12,7 +12,7 @@ type PropsType = {
   onImageClick:(srcData:SourceDataType) => void,
 };
 
-const GridGallary = ( {src, imgNumber = 9, numColumns = 3,onImageClick} : PropsType) => {
+const GridGallary = ( {src, imgNumber = 9, numColumns = 3, onImageClick} : PropsType) => {
   const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();

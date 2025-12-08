@@ -11,7 +11,8 @@ const VideoPlayer = ({src}: {src:string}) => {
   }, []);
 
   return (
-      <video ref={videoRef} controls autoPlay muted key={src} style={{height:"95vh", width:"90vw"}}>
+      <video ref={videoRef} controls autoPlay muted key={src} 
+              playsInline={false} style={{height:"95vh", width:"90vw"}}>
         <source type="video/mp4" src={src}></source>
       </video>
   )

@@ -2,17 +2,18 @@ import { useEffect, useRef, useCallback, MouseEvent} from 'react';
 import { MdClose } from "react-icons/md";
 
 type ModalProps = {
+  name : string,
   children : React.ReactNode,
   handleClose : ()=>void,
 };
 
-const Modal = ({children, handleClose} : ModalProps) => {
+const Modal = ({name, children, handleClose} : ModalProps) => {
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {   
     const body = document.body;
     body.classList.add('no-scroll');  // remove scrolling on backgraund
-    window.history.pushState({ modalOpen: true }, '', window.location.pathname + '#modal');
+    window.history.pushState({ modalOpen: true }, '', `${window.location.pathname}#${name}`);
 
       const handlePopState = (event:PopStateEvent) => {
         if (!event.state || !event.state.modalOpen) {

@@ -1,98 +1,93 @@
-"use client";
-import { useState, useRef, RefObject} from 'react';
-import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import React, { useState, useMemo } from 'react';
+import Image from 'next/image'; 
 import { FaRegPlayCircle } from "react-icons/fa";
+import { GalleryItem, galleryData } from './data'; 
 import {SourceType, SourceDataType} from '@/lib/types';
+import './testimonials.css'; 
 
-import './testimonials.css';
+const ITEMS_PER_PAGE = 6;
 
-const TestimonialsData = [
-    { 
-      video: 'videos/testimonials/IMG_7621.MP4',
-      image: 'videos/testimonials/IMG_7621.jpg',
-      text: 'Висловлюємо подяку хлопцям з фонду УНС за чергову і своєчасну допомогу.'  
-    },
-    { 
-      video: 'videos/testimonials/IMG_7622.mp4',
-      image: 'videos/testimonials/IMG_7622.jpg',
-      text: 'Дякуємо фонду УНС та компанії Globallogic за РЕБи та Старлінки.'  
-    },
-    { 
-      video: 'videos/testimonials/IMG_7623.mp4',
-      image: 'videos/testimonials/IMG_7623.jpg',
-      text: 'Хочемо висловити велику подяку від нашого підрозділу за оперативний збір та закупівлю двох РЕБів.'  
-    },
-    { 
-      video: 'videos/testimonials/IMG_7624.mp4',
-      image: 'videos/testimonials/IMG_7624.jpg',
-      text: 'Дякуємо хлопцям з фонду УНС за придбаний ними Старлінк та три чудових смартфони.'  
-    },
-]
+interface ImageGalleryProps {
+  onPlayButtonClick:(srcData:SourceDataType) => void
+}
 
-const Testimonials = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
-  const [delta, setDelta] = useState<number>(0);  
-  const slider = useRef<HTMLUListElement | HTMLUListElement | null>(null);
+const Testimonials: React.FC<ImageGalleryProps> = ({ onPlayButtonClick }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  
+  const TOTAL_PAGES = Math.ceil(galleryData.length / ITEMS_PER_PAGE); // 18 / 6 = 3
 
-  const handleBack = () => {
-    let currentDelta = delta;
-    if (currentDelta < 0) {
-      currentDelta += 25;  
-      if (slider.current)
-        slider.current.style.transform = `translateX(${currentDelta}%)`;
-      setDelta(currentDelta);
-    }
+  // Обрізання масиву (Data Slicing)
+  const currentItems = useMemo(() => {
+    const startIndex = currentPage * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return galleryData.slice(startIndex, endIndex);
+  }, [currentPage]);
 
-  }
+  // Логіка навігації
+  const handleNext = () => {
+    setCurrentPage(prev => Math.min(prev + 1, TOTAL_PAGES - 1));
+  };
 
-  const handleForward = () => {
-    let currentDelta = delta;
-    if (currentDelta > -(maxDelta(slider))) {
-      currentDelta -= 25; 
-      if (slider.current)
-        slider.current.style.transform = `translateX(${currentDelta}%)`;
-      setDelta(currentDelta);
-
-    }
-  }  
-  const maxDelta = (ref: RefObject<HTMLUListElement | null>) => 
-    (ref.current && ref.current?.offsetHeight < 300) ? 75 : 50;
-
+  const handlePrev = () => {
+    setCurrentPage(prev => Math.max(prev - 1, 0));
+  };
+  
   const handlePlayButton = (index:number) => {
-    onPlayButtonClick({type:SourceType.video, data:TestimonialsData[index].video});
+      onPlayButtonClick({type:SourceType.video, data:currentItems[index].video});
   }  
-
+  
+  // Визначення видимості кнопок
+  const isFirstPage = currentPage === 0;
+  const isLastPage = currentPage === TOTAL_PAGES - 1;
 
   return (
-    <div className='testimonials'>
-      {delta < 0 && <IoIosArrowDropleft className="prev-btn" onClick={handleBack} />}
-      {delta > -(maxDelta(slider)) && <IoIosArrowDropright className="next-btn" onClick={handleForward}/>}
-      <div className="slider">
-        <ul ref={slider}>
-            {TestimonialsData.map((item, index) => (
-              <li key={index}>
-                <Slide index={index} onPlayButtonClick={handlePlayButton}/>
-              </li>
-            ))}
-        </ul>
-      </div>
-    </div>
-  )
-}
+    <div className="testimonials">
+      
+      {/* Кнопка "Вліво" (показуємо, якщо це не перша сторінка) */}
+      <button 
+        className="nav-button"
+        onClick={handlePrev} 
+        disabled={isFirstPage}
+        aria-label="Попередня група"
+      >
+        &#9664; {/* Стрілка вліво */}
+      </button>
 
-function Slide({index, onPlayButtonClick}:{index:number, onPlayButtonClick: (index:number) => void}) {
-  return(
-    <div className="list-item">
-        <div className="item-left">
-            {/* <video playsInline={false}>
-              <source type="video/mp4" src={TestimonialsData[index].src}></source>
-            </video> */}
-            <img src={TestimonialsData[index].image} alt='' />
-            <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick(index)}/>
-        </div>
-        <div className="item-right"> {TestimonialsData[index].text}</div>
+      {/* Сітка елементів */}
+      <div className="gallery-grid">
+        {currentItems.map((item, index) => (
+          <div key={index} className="gallery-item">
+            <div className="image-wrapper">
+                <p className="gallery-item-text">{item.image}</p>
+                <Image 
+                    src={item.image} 
+                    alt={item.text} 
+                    fill // Дозволяє зображенню заповнити батьківський контейнер
+                    priority={currentPage === 0 && index < 3} // Прискорює завантаження перших кількох зображень
+                    // Важливо: Описуємо розмір зображення на різних брейкпойнтах
+                    sizes="(max-width: 900px) 50vw, 33vw" 
+                    style={{ objectFit: 'cover' }} 
+                />
+                <FaRegPlayCircle className='play-icon' onClick={()=>handlePlayButton(index)}/>
+                
+            </div>
+            <p className="gallery-item-text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Кнопка "Вправо" (показуємо, якщо це не остання сторінка) */}
+      <button 
+        className="nav-button"
+        onClick={handleNext} 
+        disabled={isLastPage}
+        aria-label="Наступна група"
+      >
+        &#9654; {/* Стрілка вправо */}
+      </button>
+      
     </div>
   );
-}
-
+};
 
 export default Testimonials;

@@ -1,0 +1,152 @@
+
+.sliderss-container {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   height: 100%;
+   gap: 20px;
+ }
+.testimonials {
+    margin: 30px auto 80px ;
+    padding: 0 80px;
+    position: relative;
+}
+
+.next-btn, .prev-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
+}
+
+.prev-btn {
+    right: auto;
+    left: 0;
+}
+
+.slider {
+    overflow: hidden;
+    /* color: white; */
+    height: 640px;
+}
+
+.slider ul {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.slider ul li{
+    list-style: none;
+    width: 25%;
+    padding: 10px;
+}
+
+.list-item {
+    padding: 40px;
+    border-radius: 10px;
+    color: #676767;
+    line-height: 1.4;
+    /* background: white; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 300px;
+    background-color: rgb(205, 230, 205);
+;
+}
+
+.item-left {
+   flex-basis: 40%;
+   position: relative;
+}
+.item-right {
+    flex-basis: 50%;
+    padding-left: 10px;
+}
+
+.play-icon{
+    width: 60px;
+    color:rgb(228, 237, 228);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 40%;;
+    transform: translate(-50%, -50%);
+    font-size: 52px;
+}
+
+.item-left video {
+    width: 250px;
+    height: 200px;
+}
+.item-left img {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .slider ul li{
+        padding: 10px;
+    }
+
+    .list-item {
+      width: 100%;
+      height: 250px;
+    }
+
+   /* .item-left img {
+      width: 80%;
+      height: 100px;
+    } */
+
+    .play-icon{
+      width: 40px;
+      /* left: 50%;; */
+      font-size: 32px;;
+    }
+
+}
+
+@media (max-width: 840px) {
+    .slider ul li{
+      padding: 3px;
+    }
+   .slider ul {
+      width: 400%;
+    }   
+    .slider {
+        height: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    .item-right {
+      font-size: 12px;
+    }
+    .slider {
+      margin-bottom: 20px;
+    }
+
+    .list-item {
+      /* margin: 10px; */
+      padding: 30px 5px;    
+      flex-direction: column;
+      gap: 5px;
+    }
+    .item-left img {
+      width: 100%;
+      height: 120px;
+    }
+    .play-icon{
+      left: 50%;;
+    }
+}
+

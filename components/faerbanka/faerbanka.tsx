@@ -3,7 +3,7 @@ import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
 import Loader from '@/components/common/loader/loader'
 import { GoArrowRight } from "react-icons/go";
-import logo from '../../src/assets/faerbanka/fb_logo.png'
+import logo from '../../src/assets/faerbanka/fb_logo.jpg'
 import {SourceType, SourceDataType} from '@/lib/types';
 
 import './faerbanka.css';

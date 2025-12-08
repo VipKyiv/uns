@@ -107,7 +107,7 @@ const Carousel = ( {src} : {src: string}) => {
           
           {fileList[currentIndex] && fileList[currentIndex].fileType === 'video' &&  
              <video  key={fileList[currentIndex].filePath} controls autoPlay muted
-                      style={{height:"95vh", width:"100vw"}}>
+                      style={{height:"95vh", width:"100vw"}} playsInline={false}>
               <source type="video/mp4" src={fileList[currentIndex].filePath}></source>
             </video>}
       </div>
