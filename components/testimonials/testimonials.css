@@ -44,18 +44,6 @@
   font-size: 14px;
   color: #333;
 }
-
-/* 2.2. Адаптивність: 3 рядки, 2 стовпчики (@media max-width: 900px) */
-@media (max-width: 900px) {
-  .gallery-grid {
-    /* 3 рядки, 2 стовпчики (2x3) */
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .image-wrapper {
-    height: 150px;
-  }
-}
-
 .nav-button {
   background: none;
   border: none;
@@ -75,3 +63,19 @@
 .nav-button:not(:disabled):hover {
   color: olive;
 }
+/* 2.2. Адаптивність: 3 рядки, 2 стовпчики (@media max-width: 900px) */
+@media (max-width: 900px) {
+  .gallery-grid {
+    /* 3 рядки, 2 стовпчики (2x3) */
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    gap: 5px;
+  }
+  .image-wrapper {
+    height: 150px;
+  }
+  .nav-button {
+    font-size: 20px;
+  }
+}
+
