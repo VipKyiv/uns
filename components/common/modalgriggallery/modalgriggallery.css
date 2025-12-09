@@ -1,0 +1,32 @@
+.image-grid-container {
+    width: 95%;
+  display: grid;
+  /* 4 рядки і 6 стовпчиків: grid-template-rows: repeat(4, 1fr); grid-template-columns: repeat(6, 1fr); */
+  grid-template-columns: repeat(6, 1fr); /* 6 стовпчиків */
+  gap: 10px; /* Відстань між зображеннями */
+  padding: 10px;
+}
+
+/* Налаштування, щоб перевірити, чи масив має 24 елементи */
+.image-grid-container > .image-item:nth-child(25) {
+  display: none; /* Заборона показу зайвих елементів */
+}
+
+.image-item {
+  position: relative; 
+  /* Це дозволяє <Image fill> займати весь простір контейнера */
+  /* Встановлюємо співвідношення сторін для комірки, наприклад, 3:2 */
+  padding-bottom: 66.66%; /* 2/3 від ширини = співвідношення 3:2 */
+  height: 0; /* Обнуляємо висоту, щоб працював padding-bottom */
+  
+  overflow: hidden;
+  border: 1px solid olive;
+  border-radius: 2px;
+}
+
+@media (max-width: 700px) {
+  .image-grid-container {
+    /* 6 рядків і 4 стовпчики: grid-template-rows: repeat(6, 1fr); grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(4, 1fr); /* 4 стовпчики */
+  }
+}

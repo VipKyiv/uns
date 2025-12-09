@@ -14,16 +14,15 @@ const Modal = ({name, children, handleClose} : ModalProps) => {
     const body = document.body;
     body.classList.add('no-scroll');  // remove scrolling on backgraund
     window.history.pushState({ modalOpen: true }, '', `${window.location.pathname}#${name}`);
-
       const handlePopState = (event:PopStateEvent) => {
         if (!event.state || !event.state.modalOpen) {
             handleClose(); // Close the modal
         }
       };
-      window.addEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', handlePopState);
     return () => {
       body.classList.remove('no-scroll');
-        window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, [handleClose]);
 

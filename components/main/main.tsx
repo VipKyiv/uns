@@ -16,6 +16,7 @@ import OurHeroes from "@/components/ourheroes/ourheroes";
 import VideoPlayer from "@/components/common/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
 import ShowImagesFolder from '@/components/common/showimagesfolder/showimagesfolder';
+import ModalGridGallary from '@/components/common/modalgriggallery/modalgriggallery';
 import Carousel from '@/components/common/carousel/carousel';
 
 
@@ -31,7 +32,8 @@ const Main = () => {
     } else if (srcData.type === SourceType.paymentData){
       setChildrenComponent(<PaymentDetails/>);
     } else if (srcData.type === SourceType.imageFolder){
-      setChildrenComponent(<ShowImagesFolder  src={srcData.data}/>);
+      // setChildrenComponent(<ShowImagesFolder  src={srcData.data}/>);
+      setChildrenComponent(<ModalGridGallary/>);
     } else if (srcData.type === SourceType.mixed ){
       setChildrenComponent(<Carousel src={srcData.data}/>);
     }

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image'; 
 import { FaRegPlayCircle } from "react-icons/fa";
-import { GalleryItem, galleryData } from './data'; 
+import { galleryData } from './data'; 
 import {SourceType, SourceDataType} from '@/lib/types';
 import './testimonials.css'; 
 
@@ -63,7 +63,7 @@ const Testimonials: React.FC<ImageGalleryProps> = ({ onPlayButtonClick }) => {
                     src={item.image} 
                     alt={item.text} 
                     fill // Дозволяє зображенню заповнити батьківський контейнер
-                    // priority={currentPage === 0 && index < 3} // Прискорює завантаження перших кількох зображень
+                    priority={currentPage === 0 && index < 3} // Прискорює завантаження перших кількох зображень
                     // Важливо: Описуємо розмір зображення на різних брейкпойнтах
                     sizes="(max-width: 900px) 50vw, 33vw" 
                     style={{ objectFit: 'cover' }} 
