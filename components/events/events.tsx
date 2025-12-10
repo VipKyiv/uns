@@ -45,12 +45,6 @@ const Events = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) 
 
   return (
     <div className='events'>
-      {/* <div  className='gallery'>
-        <img src={gallery_1.src} alt='' />
-        <img src={gallery_2.src} alt='' />
-        <img src={gallery_3.src} alt='' />
-        <img src={gallery_4.src} alt='' />
-      </div> */}
       <div  className='gallery'>
         {imageList}
       </div> 

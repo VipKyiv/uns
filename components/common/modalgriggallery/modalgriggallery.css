@@ -24,6 +24,17 @@
   border-radius: 2px;
 }
 
+.play-icon{
+    width: 60px;
+    color:rgb(228, 237, 228);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;;
+    transform: translate(-50%, -50%);
+    font-size: 52px;
+}
+
 @media (max-width: 700px) {
   .image-grid-container {
     /* 6 рядків і 4 стовпчики: grid-template-rows: repeat(6, 1fr); grid-template-columns: repeat(4, 1fr); */

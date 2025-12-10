@@ -44,7 +44,7 @@ const GridGallary = ( {src, imgNumber = 9, numColumns = 3, onImageClick} : Props
       if (fileList[i].fileType === 'image') {
         imageList.push(
          <Image key={i} src={fileList[i].filePath} alt={`Image ${i + 1}`} 
-                layout="fill" objectFit="cover" className="grid-image"
+                fill objectFit="cover" className="grid-image"
                 onClick={()=>onImageClick({type:SourceType.mixed, data:`about;${i}`})}/>
         )
       }

@@ -10,7 +10,7 @@ export const galleryData: GalleryItem[] = [
     },
     { 
       image: '/mixed/heroes/hero_img_10.jpg',
-      video: '/mixed/heroes/hero_img_10.MP4',
+      video: '/mixed/heroes/hero_img_10.mp4',
     },
     { 
       image: '/mixed/heroes/hero_img_11.jpg',

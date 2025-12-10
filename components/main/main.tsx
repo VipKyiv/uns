@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { SourceType, SourceDataType} from '@/lib/types';
 import Modal from "@/components/common/modal/modal";
 import Navbar from "@/components/navbar/navbar";
@@ -24,8 +24,8 @@ import Carousel from '@/components/common/carousel/carousel';
 const Main = () => {
   const [source , setSource] = useState<SourceDataType | undefined>();
   const [childrenComponent, setChildrenComponent] = useState<React.JSX.Element>(<></>);
-  
-  const handlePlayButton = (srcData: SourceDataType) => {
+
+  const handlePlayButton = useCallback((srcData: SourceDataType) => {
     setSource(srcData);
     if (srcData.type === SourceType.video) {
       setChildrenComponent(<VideoPlayer src={srcData.data}/>);
@@ -37,7 +37,21 @@ const Main = () => {
     } else if (srcData.type === SourceType.mixed ){
       setChildrenComponent(<Carousel src={srcData.data}/>);
     }
-  }  
+  } , [source]) 
+  
+  // const handlePlayButton = (srcData: SourceDataType) => {
+  //   setSource(srcData);
+  //   if (srcData.type === SourceType.video) {
+  //     setChildrenComponent(<VideoPlayer src={srcData.data}/>);
+  //   } else if (srcData.type === SourceType.paymentData){
+  //     setChildrenComponent(<PaymentDetails/>);
+  //   } else if (srcData.type === SourceType.imageFolder){
+  //     // setChildrenComponent(<ShowImagesFolder  src={srcData.data}/>);
+  //     setChildrenComponent(<ModalGridGallary/>);
+  //   } else if (srcData.type === SourceType.mixed ){
+  //     setChildrenComponent(<Carousel src={srcData.data}/>);
+  //   }
+  // }  
 
   const handleCloseModal = () => {
     setSource(undefined);
@@ -59,7 +73,7 @@ const Main = () => {
        <Contact/>
        <Footer/>
      </div>
-     { source && <Modal name={'main_modal'} handleClose={handleCloseModal}>{childrenComponent}</Modal>}
+     { source && <Modal handleClose={handleCloseModal} historyKey={"modal"}>{childrenComponent}</Modal>}
     </main>
   );
 
