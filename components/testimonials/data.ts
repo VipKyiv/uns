@@ -1,8 +1,4 @@
-interface GalleryItem {
-  video: string;  
-  image: string; 
-  text: string;  
-}
+import {GalleryItem} from '@/lib/types';
 
 export const galleryData: GalleryItem[] = [
     { 

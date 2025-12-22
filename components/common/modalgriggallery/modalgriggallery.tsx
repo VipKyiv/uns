@@ -19,7 +19,8 @@ const ModalGridGallary = () => {
     if (galleryData[index].video) {
       setChildrenComponent(<VideoPlayer src={galleryData[index].video}/>)
     } else {
-      setChildrenComponent(<img src={galleryData[index].image} alt="image" style={{ objectFit: "contain", borderRadius:"10px"}}/>);
+      setChildrenComponent(<Image src={galleryData[index].image} alt="image" fill sizes="95vh"
+                          style={{ objectFit: "contain", borderRadius:"10px"}}/>);
     }
   }
    
@@ -34,9 +35,9 @@ const ModalGridGallary = () => {
               fill // <-- Використовуємо fill
               sizes="(max-width: 700px) 25vw, 16.6vw" 
               style={{ objectFit: 'cover', cursor: 'pointer' }} // <-- objectFit керує обрізанням/масштабуванням
-               onClick={()=>handlePlayButton(index)}
+              className="grid-image" 
+              onClick={()=>handlePlayButton(index)}
             />        
-          {/* <FaRegPlayCircle className='play-icon' onClick={()=>handlePlayButton(index)}/> */}
             {url.video &&  <FaRegPlayCircle className='play-icon' onClick={()=>handlePlayButton(index)}/>}
           </div>
         ))}

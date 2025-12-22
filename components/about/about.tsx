@@ -1,5 +1,6 @@
 import {SourceDataType} from '@/lib/types';
 import GridGallary from "@/components/common/gridgallery/gridgallery";
+import { galleryData } from './data'; 
 import './about.css';
 
 const About = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
@@ -7,12 +8,10 @@ const About = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) =
   return (
     <div className='about'>
       <div className="about-left">
-        {/* <img src={about_img.src} alt='img' className='about-img'/>
-        <FaRegPlayCircle className='play-icon' onClick={()=>onPlayButtonClick({type:SourceType.video, data:'videos/video.mp4'})}/> */}
-        <GridGallary src='about' onImageClick={onPlayButtonClick} numColumns={3}/>   
+        <GridGallary src={galleryData} onImageClick={onPlayButtonClick} numColumns={3}/>   
       </div>
       <div className="about-right">
-        <h3> Про БФ У.Н.С.</h3>
+        {/* <h3> Про БФ У.Н.С.</h3> */}
         <h2>Тиша, в якій працюють герої — потребує наших голосів.</h2>
         <p> 
             Благодійний Фонд УНС — волонтерська ініціатива, яка допомагає українським військовим розвідникам.

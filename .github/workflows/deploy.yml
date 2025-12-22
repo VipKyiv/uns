@@ -1,0 +1,27 @@
+name: Deploy Specific Folder to FTP
+
+on:
+  push:
+    branches:
+      - main 
+# Скрипт спрацює тільки якщо змінилися файли у вказаній папці
+    paths:
+      - 'out/**'      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Потрібно для коректної роботи деяких екшенів        
+          dangerous-clean-slate: true
+
+      - name: Sync folder to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/  
+          server-dir: /test.unc.org.ua/

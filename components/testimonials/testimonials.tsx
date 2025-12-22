@@ -33,7 +33,9 @@ const Testimonials: React.FC<ImageGalleryProps> = ({ onPlayButtonClick }) => {
   };
   
   const handlePlayButton = (index:number) => {
+    if (currentItems[index].video) {
       onPlayButtonClick({type:SourceType.video, data:currentItems[index].video});
+    }
   }  
   
   // Визначення видимості кнопок
@@ -57,11 +59,11 @@ const Testimonials: React.FC<ImageGalleryProps> = ({ onPlayButtonClick }) => {
       <div className="gallery-grid">
         {currentItems.map((item, index) => (
           <div key={index} className="gallery-item">
-            <div className="image-wrapper">
+            <div className="ts-image-wrapper">
                 <p className="gallery-item-text">{item.image}</p>
                 <Image 
                     src={item.image} 
-                    alt={item.text} 
+                    alt={item.text ?? ''} 
                     fill // Дозволяє зображенню заповнити батьківський контейнер
                     priority={currentPage === 0 && index < 3} // Прискорює завантаження перших кількох зображень
                     // Важливо: Описуємо розмір зображення на різних брейкпойнтах

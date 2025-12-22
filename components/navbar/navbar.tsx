@@ -17,7 +17,7 @@ const MenuItemsData = [
     },
     { 
       linkTo: 'about',
-      offset: -180,
+      offset: -300,
       duration: 500,
       value: 'Про нас'  
     },
@@ -29,19 +29,19 @@ const MenuItemsData = [
     // },
     { 
       linkTo: 'events',
-      offset: -270,
+      offset: -300,
       duration: 500,
       value: 'Події'  
     },
     { 
       linkTo: 'testimonials',
-      offset: -230,
+      offset: -300,
       duration: 500,
       value: 'Відгуки'  
     },
     { 
       linkTo: 'faerbanka',
-      offset: -200,
+      offset: -300,
       duration: 500,
       value: 'ФаєрБанка',
     },

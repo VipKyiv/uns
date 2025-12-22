@@ -64,6 +64,29 @@ main {
   overflow: hidden;
 }
 
+.adaptive-image-container {
+  display: grid;
+  /* Створюємо сітку: 2 стовпці, які займають однакову ширину */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px; /* Проміжок між зображеннями */
+  width: 100%;
+  margin: 100px 0;
+}
+
+
+.image-wrapper {
+  position: relative; 
+  width: 100%;
+  height: 0;
+  padding-top: 100%; 
+  overflow: hidden; 
+  cursor: pointer;
+}
+
+.image-wrapper:hover {
+  transform: scale(1.05);
+}
+
 /* media query */
 @media (max-width: 1300px) {
   .container {
@@ -72,5 +95,12 @@ main {
   }
   .btn {
     padding: 8px 18px;
+  }
+}
+
+@media (max-width: 945px) {
+  .adaptive-image-container {
+    grid-template-columns: repeat(2, 1fr); 
+    margin: 50px 0;
   }
 }

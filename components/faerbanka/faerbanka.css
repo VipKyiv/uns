@@ -1,14 +1,12 @@
 .faerbanka {
-    margin: 30px auto;
+    margin: 20px auto;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     flex-direction: column;
     width: 90%;
 }
 
 .faerbanka-about {
-    /* margin: 100px auto; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,34 +30,11 @@
     padding: 20px;
 }
 
-.faerbanka-gallery {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 25px 0;
-    /* width: 100%; */
-}
-
-.faerbanka-gallery img{
-    width: 23%;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.faerbanka-gallery img:hover{
-  transform: scale(1.05);
+.faerbanka-left ul li{
+    padding: 5px 0;
 }
 
 @media (max-width: 800px) {
-    .faerbanka-gallery {
-        /* flex-direction: column; */
-        flex-wrap: wrap;
-    }
-    .faerbanka-gallery img{
-      width: 48%;
-      margin-bottom: 25px;
-    }
     .faerbanka-left h3 {
         font-size: 14px;
     }

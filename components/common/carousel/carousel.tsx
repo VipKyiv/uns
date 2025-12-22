@@ -2,40 +2,22 @@ import { useState, useEffect, TouchEvent} from 'react';
 import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
 import Loader from '@/components/common/loader/loader';
+import { GalleryItem, SourceDataType} from '@/lib/types';
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import './carousel.css';
 
-const Carousel = ( {src} : {src: string}) => {
-  const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Carousel = ( {src} : {src: SourceDataType}) => {
+  const [fileList, setFileList] = useState<GalleryItem[]>([]);  
+  const [currentIndex, setCurrentIndex] = useState(src.index ?? 0);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>();
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState<string>();
 
   const minSwipeDistance = 50; 
 
   useEffect(() => {
-    const sourceData = src.split(';');
-    if(sourceData.length > 1)
-      setCurrentIndex(Number(sourceData[1]))
-
-    const getFilesList = async () => {
-      const getData = await getFilesListAction('mixed', sourceData[0]);
-      if (getData.returnStatus) {
-        const fileData = await JSON.parse(getData.payload);
-
-        setFileList(fileData);
-      } else {
-        // set error
-      }
-    }
-    setIsLoading(true);
-    getFilesList().then(()=>{
-    //   setFormData(prepearingDGData(dbData));
-      setIsLoading(false);
-    });
-
+    setFileList(JSON.parse(src.data));
   }, []);
 
  useEffect(() => {
@@ -92,7 +74,7 @@ const Carousel = ( {src} : {src: string}) => {
     }
   };
 
-  if (isLoading || fileList.length === 0)
+  if (!fileList || fileList.length === 0)
     return (<Loader />);
 
   return (
@@ -101,15 +83,11 @@ const Carousel = ( {src} : {src: string}) => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}>
-          {/* {fileList[currentIndex].fileType === 'image' && <img alt='' src={fileList[currentIndex].filePath} />} */}
-          {fileList[currentIndex] && fileList[currentIndex].fileType === 'image' &&  <Image src={fileList[currentIndex].filePath} alt="image" fill sizes="100vw"
+          {fileList[currentIndex] && fileList[currentIndex].video ? <video  key={currentIndex}
+           controls autoPlay muted style={{height:"95vh", width:"100vw"}} playsInline={false}>
+              <source type="video/mp4" src={fileList[currentIndex].video}></source></video> 
+              : <Image src={fileList[currentIndex].image} alt="image" fill sizes="100vw"
                    style={{ objectFit: "contain", borderRadius:"10px"}}/>}
-          
-          {fileList[currentIndex] && fileList[currentIndex].fileType === 'video' &&  
-             <video  key={fileList[currentIndex].filePath} controls autoPlay muted
-                      style={{height:"95vh", width:"100vw"}} playsInline={false}>
-              <source type="video/mp4" src={fileList[currentIndex].filePath}></source>
-            </video>}
       </div>
       <div className="btn-container">
         <button  className="prev-btn" onClick={handleBack}><IoIosArrowDropleft/>

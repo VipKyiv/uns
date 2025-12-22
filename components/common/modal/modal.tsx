@@ -84,10 +84,10 @@ const Modal = ({children, handleClose, zIndex = 1000, historyKey} : ModalProps) 
   return (
     // <div ref={container} className='modal-container' onClick={closeModal} >
     <div ref={container} style={overlayStyle} onClick={closeModal} >
+      {children}
       <div className='close-button'>
         <button onClick={handleOutsideClose}><MdClose/></button>
       </div>
-      {children}
     </div> 
   )
 }

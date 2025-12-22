@@ -24,6 +24,10 @@
   border-radius: 2px;
 }
 
+.grid-image:hover {
+  transform: scale(1.05);
+}
+
 .play-icon{
     width: 60px;
     color:rgb(228, 237, 228);
@@ -39,5 +43,9 @@
   .image-grid-container {
     /* 6 рядків і 4 стовпчики: grid-template-rows: repeat(6, 1fr); grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: repeat(4, 1fr); /* 4 стовпчики */
+  }
+  .play-icon{
+    width: 30px;
+    font-size: 24px;
   }
 }

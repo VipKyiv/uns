@@ -29,13 +29,13 @@
   background-color: white;
 }
 
-.image-wrapper {
+.ts-image-wrapper {
   position: relative; 
   height: 250px; 
   width: 100%;
 }
 
-.image-wrapper img:hover{
+.ts-image-wrapper img:hover{
   transform: scale(1.05);
 }
 
@@ -70,7 +70,7 @@
     padding: 0;
     gap: 5px;
   }
-  .image-wrapper {
+  .ts-image-wrapper {
     height: 150px;
   }
   .nav-button {

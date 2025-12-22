@@ -7,15 +7,12 @@ import Hero from "@/components/hero/hero";
 import About from "@/components/about/about";
 import Title from "@/components/title/title";
 import Events from "@/components/events/events";
-import Partners from "@/components/partners/partners";
 import Testimonials from "@/components/testimonials/testimonials";
 import Contact from "@/components/contact/contact";
 import Footer from "@/components/footer/footer";
 import FaerBanka from "@/components/faerbanka/faerbanka";
-import OurHeroes from "@/components/ourheroes/ourheroes";
 import VideoPlayer from "@/components/common/videoplayer/videoplayer";
 import PaymentDetails from "@/components/paymentdetails/paymentdetails";
-import ShowImagesFolder from '@/components/common/showimagesfolder/showimagesfolder';
 import ModalGridGallary from '@/components/common/modalgriggallery/modalgriggallery';
 import Carousel from '@/components/common/carousel/carousel';
 
@@ -28,14 +25,14 @@ const Main = () => {
   const handlePlayButton = useCallback((srcData: SourceDataType) => {
     setSource(srcData);
     if (srcData.type === SourceType.video) {
-      setChildrenComponent(<VideoPlayer src={srcData.data}/>);
+      setChildrenComponent(<VideoPlayer src={srcData.data as string}/>);
     } else if (srcData.type === SourceType.paymentData){
       setChildrenComponent(<PaymentDetails/>);
     } else if (srcData.type === SourceType.imageFolder){
       // setChildrenComponent(<ShowImagesFolder  src={srcData.data}/>);
       setChildrenComponent(<ModalGridGallary/>);
     } else if (srcData.type === SourceType.mixed ){
-      setChildrenComponent(<Carousel src={srcData.data}/>);
+      setChildrenComponent(<Carousel src={srcData}/>);
     }
   } , [source]) 
   
@@ -62,12 +59,13 @@ const Main = () => {
      <Navbar onContributeButtonClick={handlePlayButton}/>
      <Hero  onPlayButtonClick={handlePlayButton}/>
      <div className="container">
+       <Title title='БО БФ У.Н.С.' subtitle='Про нас'/>
        <About onPlayButtonClick={handlePlayButton}/>
        <Title title='Події' subtitle='Наше дозвілля'/>
        <Events onPlayButtonClick={handlePlayButton}/>
-       <Title title='Нам дякують' subtitle=''/>
+       <Title title='Нам дякують' subtitle="Зворотній зв'язок"/>
        <Testimonials onPlayButtonClick={handlePlayButton}/>
-       <Title title='Проект ФаєрБанка' subtitle=''/>
+       <Title title='ФАЄРБАНКА' subtitle='Проект'/>
        <FaerBanka onPlayButtonClick={handlePlayButton}/>
        <Title title="Зв'яжіться з нами" subtitle='Наші контакти'/>
        <Contact/>

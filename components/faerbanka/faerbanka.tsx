@@ -1,45 +1,32 @@
-import { useState, useEffect} from 'react';
-import {getFilesListAction} from '@/lib/serveractions';
 import Image from 'next/image';
-import Loader from '@/components/common/loader/loader'
+import { FaRegPlayCircle } from "react-icons/fa";
 import { GoArrowRight } from "react-icons/go";
-import logo from '../../src/assets/faerbanka/fb_logo.jpg'
 import {SourceType, SourceDataType} from '@/lib/types';
+import { galleryData } from './data'; 
 
 import './faerbanka.css';
 
 const FaerBanka = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataType) => void}) => {
-  const [fileList, setFileList] = useState<{filePath: string, fileType: string}[]>([]);  
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>();
 
-  useEffect(() => {
-    const getFilesList = async () => {
-      const getData = await getFilesListAction('mixed','faerbanka');
-      if (getData.returnStatus) {
-        const fileData = await JSON.parse(getData.payload);
-        setFileList(fileData);
-      } else {
-        // set error
-      }
-    }
-    setIsLoading(true);
-    getFilesList().then(()=>{
-    //   setFormData(prepearingDGData(dbData));
-      setIsLoading(false);
-    });
-  }, []);
-
-  if (isLoading)
-    return (<Loader />);
-
-  const imageList = [];
-  if(fileList.length > 4) {
+  const imageList:React.JSX.Element[] = [];
+  if(galleryData.length > 4) {
     for (let i = 0; i < 4; i++) {
-      imageList.push(<img key={i} src={fileList[i].filePath} alt='' 
-                          onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:`faerbanka;${i}`})}/>);
+      imageList.push(
+        <>
+          <Image key={i} src={galleryData[i].image} alt={galleryData[i].image} 
+               fill 
+              //  sizes="(max-width: 768px) 25vw, 25vw"
+               style={{ objectFit: "cover", borderRadius:"5px"}}
+               sizes="(max-width: 945px) 50vw, 50vw"
+               onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:JSON.stringify(galleryData), index:i})}/> 
+            {galleryData[i].video &&  
+              <FaRegPlayCircle className='play-icon' 
+              onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:JSON.stringify(galleryData), index:i})}/> }
+        </>
+      );
     }
   }
+
   return (
     <div className='faerbanka'>
       <div className='faerbanka-about'>
@@ -56,13 +43,17 @@ const FaerBanka = ({onPlayButtonClick}:{onPlayButtonClick:(srcData:SourceDataTyp
           </ul>
         </div>
         <div className="faerbanka-right">
-          <Image src={logo} alt="" width={250} height={250} className='faerbank-about-img' />
+          <Image src={'/faerbanka/fb_logo.jpg'} alt="" width={250} height={250} className='faerbank-about-img' />
         </div>
       </div>
-      <div  className='faerbanka-gallery'>
-        {imageList}
+      <div  className='adaptive-image-container'>
+        {imageList.map((item, index) => (
+          <div key={index} className="image-wrapper" > 
+            {item}
+          </div>
+        ))}
       </div> 
-      <button className='btn' onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:`faerbanka`})}>
+      <button className='btn' onClick={()=>onPlayButtonClick({type:SourceType.mixed, data:JSON.stringify(galleryData)})}>
         Тут більше ...<GoArrowRight/>
       </button>
     </div>
