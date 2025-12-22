@@ -39,7 +39,7 @@ export const galleryData: GalleryItem[] = [
     },
     { 
       image: '/events/ev_photo_21.jpg',
-      video: '/events/ev_video_21.MOV',
+      video: '/events/ev_video_21.mp4',
     },
     { 
       image: '/events/ev_photo_22.jpg',
