@@ -3,7 +3,7 @@ name: Deploy Specific Folder to FTP
 on:
   push:
     branches:
-      - main 
+      - dev 
 # Скрипт спрацює тільки якщо змінилися файли у вказаній папці
     paths:
       - 'out/**'      
