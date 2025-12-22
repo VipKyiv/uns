@@ -50,7 +50,7 @@ export const galleryData: GalleryItem[] = [
     { 
       image: '/events/ev_photo_24.jpg',
     },
-    { 
-      image: '/events/ev_photo_25.jpg',
-    },
+    // { 
+    //   image: '/events/ev_photo_25.jpg',
+    // },
 ];
